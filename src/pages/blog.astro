@@ -1,0 +1,298 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+
+const articles = [
+  {
+    slug: '/blog/google-business-profile-perpignan',
+    category: 'SEO Local',
+    title: 'Google Business Profile : la vitrine digitale incontournable pour les entreprises locales à Perpignan',
+    excerpt: "Votre fiche Google Business Profile est souvent le premier contact entre un client local et votre entreprise. Découvrez comment l'optimiser pour gagner en visibilité à Perpignan.",
+    date: '17 mars 2026',
+    readTime: '6 min',
+    color: '#101520',
+  },
+  {
+    slug: '/blog/communication-locale-perpignan',
+    category: 'Stratégie',
+    title: "Pourquoi investir dans la communication locale à Perpignan ?",
+    excerpt: "Les entreprises de Perpignan et du Roussillon qui investissent dans leur communication locale gagnent en visibilité et en clients. Voici pourquoi cette stratégie paie.",
+    date: '15 mars 2026',
+    readTime: '5 min',
+    color: '#151010',
+  },
+  {
+    slug: '/blog/identite-marque-forte-perpignan',
+    category: 'Identité visuelle',
+    title: "Créer une identité de marque forte : un essentiel pour les entreprises de Perpignan",
+    excerpt: "Logo, couleurs, typographie, ton : les 5 éléments d'une identité visuelle cohérente qui vous distingue de la concurrence dans le Roussillon.",
+    date: '10 mars 2026',
+    readTime: '7 min',
+    color: '#0f1510',
+  },
+  {
+    slug: '/blog/logo-professionnel-entreprise',
+    category: 'Identité visuelle',
+    title: 'Pourquoi un logo professionnel change tout pour votre entreprise',
+    excerpt: "Votre logo est souvent le premier contact visuel entre votre marque et vos clients. Découvrez pourquoi investir dans une identité visuelle forte est la meilleure décision pour votre entreprise.",
+    date: '12 mars 2026',
+    readTime: '4 min',
+    color: '#1a1a1a',
+  },
+  {
+    slug: '/blog/instagram-commerce-local',
+    category: 'Réseaux sociaux',
+    title: 'Comment booster la visibilité de votre commerce local sur Instagram',
+    excerpt: "Instagram est un levier puissant pour les commerces de proximité. Quelques bonnes pratiques suffisent pour attirer de nouveaux clients sans y passer des heures.",
+    date: '5 mars 2026',
+    readTime: '5 min',
+    color: '#1c1610',
+  },
+  {
+    slug: '/blog/site-vitrine-ou-instagram',
+    category: 'Site web',
+    title: 'Site vitrine ou page Instagram : que choisir pour votre artisanat ?',
+    excerpt: "Beaucoup d'artisans se posent la question. La réponse dépend de vos objectifs, de votre budget et de votre secteur. On fait le point.",
+    date: '24 févr. 2026',
+    readTime: '6 min',
+    color: '#101a1a',
+  },
+  {
+    slug: '/blog/erreurs-communication-pme-roussillon',
+    category: 'Stratégie',
+    title: '5 erreurs de communication que font les PME du Roussillon (et comment les éviter)',
+    excerpt: "Après avoir accompagné des dizaines d'entrepreneurs locaux, on a identifié les erreurs les plus fréquentes. Autant les éviter dès le départ.",
+    date: '14 févr. 2026',
+    readTime: '7 min',
+    color: '#1a1015',
+  },
+  {
+    slug: '/blog/supports-imprimes-entreprise',
+    category: 'Imprimé',
+    title: 'Cartes de visite, flyers, kakémonos : quel support pour quel usage ?',
+    excerpt: "Les supports imprimés restent incontournables pour créer une impression durable. Encore faut-il choisir le bon format selon le contexte.",
+    date: '3 févr. 2026',
+    readTime: '4 min',
+    color: '#0f1a10',
+  },
+  {
+    slug: '/blog/lancer-boutique-en-ligne',
+    category: 'E-commerce',
+    title: 'Lancer sa boutique en ligne : les bases pour vendre efficacement',
+    excerpt: "Un site e-commerce ne s\u2019improvise pas. De la fiche produit aux moyens de paiement, voici les fondamentaux pour démarrer du bon pied.",
+    date: '20 janv. 2026',
+    readTime: '8 min',
+    color: '#151015',
+  },
+]
+---
+
+<Layout title="Blog – Conseils communication à Perpignan | Com Roussillon" description="Conseils, tendances et inspiration pour les artisans, commerçants et PME du Roussillon. Le blog de Com Roussillon, agence de communication à Perpignan.">
+  <Nav />
+
+  <div id="blog-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Le blog</span>
+      <h1>Conseils, tendances<br><em>et inspiration.</em></h1>
+      <p class="hero-sub">Des ressources concrètes pour les artisans, commerçants et PME du Roussillon qui veulent développer leur communication.</p>
+    </div>
+  </div>
+
+  <main class="blog-main">
+    <div class="blog-grid">
+      {articles.map((a, i) => (
+        <a href={a.slug} class={`blog-card ${i === 0 ? 'featured' : ''}`}>
+          <div class="card-thumb" style={`background: ${a.color}`}>
+            <span class="card-category">{a.category}</span>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">{a.title}</h2>
+            <p class="card-excerpt">{a.excerpt}</p>
+            <div class="card-meta">
+              <span>{a.date}</span>
+              <span class="dot-sep">·</span>
+              <span>{a.readTime} de lecture</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  #blog-hero {
+    position: relative;
+    min-height: 55vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 5vw;
+  }
+  #blog-hero::before {
+    content: '';
+    position: absolute; inset: -12px;
+    background-image: url("/hero-canigou.webp");
+    background-size: cover;
+    background-position: center;
+    filter: blur(0px);
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.86);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem;
+  }
+  #blog-hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -.03em;
+    line-height: 1.06;
+    margin-bottom: 1.5rem;
+  }
+  #blog-hero h1 em { font-style: italic; color: var(--gold); font-weight: 300 }
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    max-width: 540px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 768px) {
+    #blog-hero { min-height: 45vh }
+    .hero-sub { font-size: 15px }
+  }
+
+  .blog-main {
+    background: #f5f5f7;
+    padding: 5rem 5vw;
+    min-height: 60vh;
+  }
+
+  .blog-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .blog-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: clip;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s ease, box-shadow .3s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.1);
+  }
+
+  /* Première carte en pleine largeur */
+  .blog-card.featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .blog-card.featured .card-thumb {
+    width: 45%;
+    height: auto;
+    min-height: 280px;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+  .blog-card.featured .card-body {
+    padding: 2.8rem;
+    justify-content: center;
+  }
+  .blog-card.featured .card-title {
+    font-size: 1.7rem;
+  }
+  .blog-card.featured .card-excerpt {
+    max-width: 480px;
+  }
+
+  .card-thumb {
+    height: 190px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.2rem 1.4rem;
+  }
+  .card-category {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(0,0,0,.45);
+    padding: .3rem .7rem;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+  }
+
+  .card-body {
+    padding: 1.6rem 1.8rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.35;
+    letter-spacing: -.02em;
+    margin-bottom: .75rem;
+  }
+  .card-excerpt {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: #515154;
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 1.2rem;
+  }
+  .card-meta {
+    font-size: 11px;
+    color: #86868b;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .dot-sep { color: #c0c0c5 }
+
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr) }
+    .blog-card.featured { flex-direction: column; grid-column: auto }
+    .blog-card.featured .card-thumb { width: 100%; min-height: 200px }
+    .blog-card.featured .card-body { padding: 1.6rem 1.8rem 1.8rem }
+    .blog-card.featured .card-title { font-size: 1.2rem }
+  }
+
+  @media (max-width: 640px) {
+    .blog-hero { padding: 5rem 5vw 3.5rem }
+    .blog-main { padding: 3rem 5vw }
+    .blog-grid { grid-template-columns: 1fr; gap: 20px }
+  }
+</style>

@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout title="Politique de confidentialité – Com Roussillon">
+  <Nav />
+  <div class="policy-wrap">
+    <div class="policy-inner">
+      <a href="/" class="back-link">← Retour au site</a>
+      <h1>Politique de confidentialité</h1>
+
+      <section>
+        <h2>1. Introduction</h2>
+        <p>Bienvenue sur le site internet de la société Com Roussillon. La protection de vos données personnelles est une priorité pour nous. Cette politique de confidentialité décrit les types de données que nous collectons, leur utilisation, ainsi que vos droits concernant vos informations personnelles.</p>
+      </section>
+
+      <section>
+        <h2>2. Protection contre le spam avec Google reCAPTCHA</h2>
+        <p>Nous utilisons Google reCAPTCHA sur nos formulaires pour distinguer les visiteurs humains des programmes automatisés (« bots »). Cet outil analyse divers éléments comme l'adresse IP, la durée de la visite, et les mouvements de la souris. Les informations traitées incluent les données d'utilisation (site visité, date, heure) et les informations de communication (adresse IP, type de navigateur, système d'exploitation). Ce traitement vise à sécuriser notre site contre les abus et repose sur notre intérêt légitime (Art. 6 par. 1 p. 1 lit. f du RGPD). Les données sont partagées avec Google Ireland Ltd et notre hébergeur. Pour plus de détails, consultez la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">politique de confidentialité de Google reCAPTCHA</a>.</p>
+      </section>
+
+      <section>
+        <h2>3. Propriété intellectuelle</h2>
+        <p>Le contenu du site comroussillon.fr (textes, images, vidéos, etc.) est la propriété exclusive de la société Com Roussillon, sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
+      </section>
+
+      <section>
+        <h2>4. Collecte de données</h2>
+        <p>Nous collectons des données personnelles lorsque vous utilisez notre site ou nos services. Ces informations peuvent inclure votre nom, adresse e-mail, numéro de téléphone, et des détails relatifs aux services que vous souhaitez obtenir. La collecte se fait principalement via le formulaire de contact pour obtenir des informations ou un devis.</p>
+      </section>
+
+      <section>
+        <h2>5. Utilisation des données</h2>
+        <p>Vos données personnelles sont utilisées pour :</p>
+        <ul>
+          <li>Communiquer avec vous</li>
+          <li>Envoyer et recevoir des informations</li>
+          <li>Répondre à vos demandes</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>6. Partage des données</h2>
+        <p>Nous partageons vos données personnelles uniquement :</p>
+        <ul>
+          <li>Lorsque nécessaire pour fournir nos services</li>
+          <li>Pour respecter des obligations légales ou réglementaires</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>7. Protection des données personnelles</h2>
+        <p>Com Roussillon s'engage à collecter et traiter vos données personnelles conformément à la législation en vigueur. Des mesures techniques et organisationnelles sont mises en place pour protéger vos données contre tout accès non autorisé, perte ou destruction accidentelle.</p>
+      </section>
+
+      <section>
+        <h2>8. Vos droits</h2>
+        <p>Vous disposez des droits suivants :</p>
+        <ul>
+          <li>Accéder à vos données personnelles et en obtenir une copie</li>
+          <li>Rectifier des données inexactes</li>
+          <li>Demander la suppression de vos données personnelles, sous réserve de nos obligations légales</li>
+          <li>Vous opposer au traitement de vos données personnelles</li>
+          <li>Définir des directives sur le traitement de vos données après votre décès</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>9. Contact</h2>
+        <p>Pour toute question ou demande, contactez-nous à l'adresse e-mail : <a href="mailto:comroussillon@gmail.com">comroussillon@gmail.com</a>.</p>
+      </section>
+
+      <section>
+        <h2>10. Tarifs</h2>
+        <p>Nos tarifs sont disponibles sur demande. Pour obtenir un devis, veuillez nous contacter via le formulaire dédié sur le site <a href="/">comroussillon.fr</a>.</p>
+      </section>
+
+      <section>
+        <h2>11. Droit applicable</h2>
+        <p>Le site comroussillon.fr est soumis au droit français. Tout litige relatif à l'utilisation du site sera de la compétence exclusive des tribunaux français.</p>
+      </section>
+    </div>
+  </div>
+  <Footer />
+</Layout>
+
+<style>
+.policy-wrap {
+  background: var(--bg-off);
+  min-height: 100vh;
+  padding: 5rem 5vw;
+}
+.policy-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.back-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--light);
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: color .15s;
+}
+.back-link:hover { color: var(--dark) }
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--dark);
+  margin-bottom: 3rem;
+  line-height: 1.1;
+}
+section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 0.5px solid var(--border);
+}
+section:last-child {
+  border-bottom: none;
+}
+h2 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--dark);
+  letter-spacing: -.02em;
+  margin-bottom: .8rem;
+}
+p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.75;
+  letter-spacing: -.01em;
+}
+ul {
+  margin-top: .6rem;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+ul li {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  letter-spacing: -.01em;
+}
+a { color: var(--gold); text-decoration: none }
+a:hover { text-decoration: underline }
+</style>

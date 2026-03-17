@@ -1,0 +1,110 @@
+---
+---
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/logo comroussillon.webp" alt="Com Roussillon" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services" class="nav-link">Services</a></li>
+    <li><a href="#realisations" class="nav-link">Réalisations</a></li>
+    <li><a href="#avis" class="nav-link">Avis</a></li>
+    <li><a href="#partenaires" class="nav-link">Partenaires</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+    <li><a href="/blog" class="nav-link">Blog</a></li>
+    <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+  </ul>
+  <button class="nav-burger" id="navBurger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<style>
+nav {
+  position: sticky; top: 0; z-index: 999;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid var(--border);
+  height: 90px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 5vw;
+}
+.nav-logo {
+  display: flex; align-items: center; text-decoration: none;
+  height: 100%; overflow: hidden;
+}
+.nav-logo img {
+  height: 180px; width: auto; max-width: 180px;
+  object-fit: contain; display: block;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center }
+.nav-links a {
+  font-size: 16px; font-weight: 400; color: var(--mid);
+  text-decoration: none; transition: color .15s;
+}
+.nav-links a:hover { color: var(--dark) }
+.nav-cta {
+  background: var(--dark) !important; color: #fff !important;
+  padding: .42rem 1.1rem; border-radius: 980px;
+  font-size: 13px !important; font-weight: 500 !important;
+  transition: background .2s !important;
+}
+.nav-cta:hover { background: #333 !important }
+
+/* Burger */
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--dark); border-radius: 2px;
+  transition: transform .25s, opacity .25s;
+}
+
+@media (max-width: 768px) {
+  nav { height: 54px }
+  .nav-logo img { height: 110px }
+  .nav-logo { position: absolute; left: 50%; transform: translateX(-50%) }
+  .nav-burger { margin-left: auto }
+  .nav-burger { display: flex }
+
+  .nav-links {
+    display: none; flex-direction: column; gap: 0;
+    position: absolute; top: 54px; left: 0; right: 0;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1rem 5vw 1.5rem;
+  }
+  .nav-links.open { display: flex }
+  .nav-links li { width: 100% }
+  .nav-links a { font-size: 15px; padding: .65rem 0; display: block; border-bottom: 0.5px solid var(--border) }
+  .nav-links li:last-child a { border-bottom: none }
+  .nav-cta {
+    margin-top: .5rem; text-align: center;
+    border-radius: 980px !important; padding: .65rem 1rem !important;
+  }
+
+  /* Burger animé quand ouvert */
+  .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg) }
+  .nav-burger.open span:nth-child(2) { opacity: 0 }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg) }
+}
+</style>
+
+<script>
+const burger = document.getElementById('navBurger')
+const links  = document.getElementById('navLinks')
+burger?.addEventListener('click', () => {
+  burger.classList.toggle('open')
+  links?.classList.toggle('open')
+})
+// Ferme le menu au clic sur un lien
+document.querySelectorAll('.nav-link').forEach(a => {
+  a.addEventListener('click', () => {
+    burger?.classList.remove('open')
+    links?.classList.remove('open')
+  })
+})
+</script>

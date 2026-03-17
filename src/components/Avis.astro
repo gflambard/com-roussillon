@@ -1,0 +1,186 @@
+---
+---
+
+<section id="avis" class="sec" style="background:var(--dark)">
+  <div class="sec-head fade-up">
+    <span class="sec-label">Avis clients</span>
+    <h2 class="sec-title" style="color:#fff">Ils nous font confiance.</h2>
+    <p class="sec-intro" style="color:#86868b">Des entrepreneurs locaux qui ont choisi Com Roussillon pour développer leur communication.</p>
+  </div>
+
+  <div class="avis-wrap">
+    <button class="avis-btn avis-prev" id="avisPrev" aria-label="Précédent">
+      <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M6 1L1 6l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="avis-btn avis-next" id="avisNext" aria-label="Suivant">
+      <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  <div class="avis-stage" id="avisStage">
+    <div class="review" data-i="0">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Superbe boîte de communication ! Réactif et à l'écoute, je recommande vivement Baptiste pour ses services.</p>
+      <p class="review-author">Ambre M.</p>
+      <p class="review-source">via Google</p>
+    </div>
+    <div class="review" data-i="1">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Professionnalisme et efficacité au rendez-vous. L'École de Rugby de l'Entente de la Têt gagne en visibilité.</p>
+      <p class="review-author">École de Rugby</p>
+      <p class="review-source">via Google</p>
+    </div>
+    <div class="review" data-i="2">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Un grand merci pour l'accompagnement logo et communication. Une équipe de véritables professionnels.</p>
+      <p class="review-author">Sarah M.</p>
+      <p class="review-source">via Google</p>
+    </div>
+    <div class="review" data-i="3">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Com Roussillon offre des services très professionnels et de qualité. Je recommande.</p>
+      <p class="review-author">Lila Mty</p>
+      <p class="review-source">via Google · il y a 8 mois</p>
+    </div>
+    <div class="review" data-i="4">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Des professionnels très à l'écoute, offrant un service de qualité.</p>
+      <p class="review-author">V S</p>
+      <p class="review-source">via Google · Local Guide · il y a 8 mois</p>
+    </div>
+    <div class="review" data-i="5">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Super travail, disponible, à l'écoute.</p>
+      <p class="review-author">Bastien Sole</p>
+      <p class="review-source">via Google · il y a 7 mois</p>
+    </div>
+  </div>
+
+  </div><!-- end avis-wrap -->
+</section>
+
+<style>
+  #avis { padding-bottom: 5rem }
+
+  .sec-head {
+    padding: 0 5vw 3.5rem;
+  }
+
+  .avis-stage {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .review {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 380px;
+    background: #242424;
+    border-radius: 16px;
+    padding: 2.2rem 1.8rem;
+    transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease;
+    will-change: transform, opacity;
+    cursor: default;
+  }
+
+  /* States set by JS via data-state attribute */
+  .review[data-state="active"] {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    z-index: 3;
+    background: #2a2a2a;
+  }
+  .review[data-state="prev"] {
+    transform: translate(calc(-50% - 420px), -50%) scale(0.84);
+    opacity: 0.45;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .review[data-state="next"] {
+    transform: translate(calc(-50% + 420px), -50%) scale(0.84);
+    opacity: 0.45;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .review[data-state="hidden"] {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .stars { color: #f5a623; font-size: 14px; letter-spacing: 3px; margin-bottom: 1rem }
+  .review-text { font-size: 14px; font-weight: 300; color: #e0e0e0; line-height: 1.7; margin-bottom: 1.5rem; letter-spacing: -.01em }
+  .review-author { font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 3px }
+  .review-source { font-size: 11px; color: #555; font-weight: 300 }
+
+  .avis-wrap {
+    position: relative;
+  }
+
+  .avis-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background .2s, opacity .2s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .avis-btn.visible { opacity: 1; pointer-events: auto }
+  .avis-btn:hover { background: rgba(255,255,255,0.16) }
+  .avis-prev { left: 5vw }
+  .avis-next { right: 5vw }
+
+  @media (max-width: 768px) {
+    .avis-stage { height: 360px }
+    .review { width: 260px }
+    .review[data-state="prev"] { transform: translate(calc(-50% - 290px), -50%) scale(0.84) }
+    .review[data-state="next"] { transform: translate(calc(-50% + 290px), -50%) scale(0.84) }
+    .review[data-state="hidden"] { transform: translate(-50%, -50%) scale(0.8) }
+  }
+</style>
+
+<script>
+  const stage = document.getElementById('avisStage')!
+  const prevBtn = document.getElementById('avisPrev')!
+  const nextBtn = document.getElementById('avisNext')!
+  const cards = Array.from(stage.querySelectorAll<HTMLElement>('.review'))
+  const total = cards.length
+  let active = 0
+
+  function mod(n: number, m: number) { return ((n % m) + m) % m }
+
+  function update() {
+    const prev = mod(active - 1, total)
+    const next = mod(active + 1, total)
+    cards.forEach((c, i) => {
+      if (i === active) c.dataset.state = 'active'
+      else if (i === prev) c.dataset.state = 'prev'
+      else if (i === next) c.dataset.state = 'next'
+      else c.dataset.state = 'hidden'
+    })
+    prevBtn.classList.add('visible')
+    nextBtn.classList.add('visible')
+  }
+
+  function goTo(i: number) { active = mod(i, total); update() }
+
+  cards.forEach((c, i) => {
+    c.addEventListener('click', () => {
+      if (c.dataset.state === 'prev' || c.dataset.state === 'next') goTo(i)
+    })
+  })
+
+  prevBtn.addEventListener('click', () => goTo(active - 1))
+  nextBtn.addEventListener('click', () => goTo(active + 1))
+
+  update()
+</script>

@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout title="Mentions légales – Com Roussillon">
+  <Nav />
+  <div class="policy-wrap">
+    <div class="policy-inner">
+      <a href="/" class="back-link">← Retour au site</a>
+      <h1>Mentions légales</h1>
+
+      <section>
+        <h2>Éditeur du site</h2>
+        <ul>
+          <li><strong>Dénomination sociale :</strong> Com Roussillon</li>
+          <li><strong>Siège social :</strong> 4 impasse des aires, 66370 Pézilla-la-Rivière</li>
+          <li><strong>SIREN :</strong> en cours d'immatriculation</li>
+          <li><strong>Code APE :</strong> en cours d'immatriculation</li>
+          <li><strong>Directeur de la publication :</strong> Baptiste Marty</li>
+          <li><strong>Contact :</strong> <a href="mailto:comroussillon@gmail.com">comroussillon@gmail.com</a></li>
+          <li><strong>Téléphone :</strong> 07 69 30 75 71</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Hébergeur du site</h2>
+        <ul>
+          <li><strong>Dénomination sociale :</strong> Vercel Inc.</li>
+          <li><strong>Siège social :</strong> 340 Pine Street, Suite 900, San Francisco, CA 94104, États-Unis</li>
+          <li><strong>Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></li>
+          <li><strong>Contact :</strong> <a href="mailto:privacy@vercel.com">privacy@vercel.com</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Propriété intellectuelle</h2>
+        <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, etc.) est la propriété exclusive de Com Roussillon, sauf mention contraire. Toute reproduction, distribution, modification ou utilisation de ces contenus, même partielle, sans autorisation préalable écrite de Com Roussillon est strictement interdite.</p>
+      </section>
+
+      <section>
+        <h2>Responsabilité</h2>
+        <p>Com Roussillon s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, Com Roussillon ne peut garantir l'exactitude, la complétude ou l'actualité de ces informations et décline toute responsabilité pour les dommages pouvant résulter de l'utilisation du site.</p>
+      </section>
+
+      <section>
+        <h2>Droit applicable</h2>
+        <p>Le présent site et ses mentions légales sont soumis au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
+      </section>
+    </div>
+  </div>
+  <Footer />
+</Layout>
+
+<style>
+.policy-wrap {
+  background: var(--bg-off);
+  min-height: 100vh;
+  padding: 5rem 5vw;
+}
+.policy-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.back-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--light);
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: color .15s;
+}
+.back-link:hover { color: var(--dark) }
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--dark);
+  margin-bottom: 3rem;
+  line-height: 1.1;
+}
+section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 0.5px solid var(--border);
+}
+section:last-child { border-bottom: none }
+h2 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--dark);
+  letter-spacing: -.02em;
+  margin-bottom: .8rem;
+}
+p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.75;
+  letter-spacing: -.01em;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  list-style: none;
+  padding: 0;
+}
+ul li {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  letter-spacing: -.01em;
+}
+ul li strong { font-weight: 500; color: var(--dark) }
+a { color: var(--gold); text-decoration: none }
+a:hover { text-decoration: underline }
+</style>

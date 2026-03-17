@@ -1,0 +1,88 @@
+---
+---
+
+<section id="realisations">
+  <div class="real-header fade-up">
+    <span class="sec-label">Nos réalisations</span>
+    <h2 class="sec-title">Ce qu'on a fait,<br>c'est notre meilleur argument.</h2>
+    <p class="sec-intro">Sites, logos, visuels — quelques projets récents pour des clients locaux du Roussillon.</p>
+  </div>
+  <div class="real-track-wrap">
+    <button class="real-nav-btn real-nav-prev" id="realPrev" aria-label="Précédent">
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="real-nav-btn real-nav-next" id="realNext" aria-label="Suivant">
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="real-track" id="realTrack">
+
+      <a class="real-card fade-up" href="https://maillotfrancais.fr/" target="_blank" rel="noopener">
+        <img src="/site maillot francais.png" alt="Maillot Français" class="real-img" />
+        <div class="real-overlay"><strong>Maillot Français</strong><span>E-commerce</span></div>
+      </a>
+
+      <a class="real-card fade-up" href="https://entente-de-la-tet.fr/" target="_blank" rel="noopener">
+        <img src="/site entente.webp" alt="Entente de la Têt" class="real-img" />
+        <div class="real-overlay"><strong>Entente de la Têt</strong><span>Site vitrine · Club de rugby</span></div>
+      </a>
+
+      <a class="real-card fade-up" href="https://xvcatalan.com/" target="_blank" rel="noopener">
+        <img src="/site XV catalan.webp" alt="XV Catalan" class="real-img" />
+        <div class="real-overlay"><strong>XV Catalan</strong><span>Site vitrine · Club de rugby</span></div>
+      </a>
+
+    </div>
+  </div>
+  <div class="real-dots-wrap">
+    <div class="carousel-dots" id="realDots"></div>
+  </div>
+</section>
+
+<style>
+#realisations { background: var(--bg-off); padding: 7rem 0 }
+.real-header { padding: 0 5vw 2.5rem }
+.real-track-wrap { overflow-x: clip; overflow-y: visible; position: relative }
+
+/* Boutons overlay sur le carrousel */
+.real-nav-btn {
+  position: absolute; top: 50%; transform: translateY(-60%);
+  z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.92); border: 0.5px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--dark); transition: opacity .2s, transform .2s, background .2s;
+  opacity: 0; pointer-events: none;
+}
+.real-nav-btn.visible { opacity: 1; pointer-events: auto }
+.real-nav-btn:hover { background: #fff; transform: translateY(-60%) scale(1.08) }
+.real-nav-prev { left: 16px }
+.real-nav-next { right: 16px }
+
+.real-dots-wrap { padding: 1rem 0 0; display: flex; justify-content: center }
+.real-track {
+  display: flex; gap: 16px; padding: 0 0 2rem;
+  padding-left: min(5vw, calc((100vw - 1200px) / 2 + 5vw));
+  user-select: none;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.real-card {
+  flex: 0 0 480px; background: #e8e8e3; border-radius: var(--radius);
+  min-height: 320px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.real-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  position: absolute; inset: 0;
+  display: block;
+}
+.real-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 50%);
+  opacity: 0; transition: opacity .3s;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 1.8rem 2rem;
+}
+.real-card:hover .real-overlay { opacity: 1 }
+.real-overlay strong { color: #fff; font-size: 16px; font-weight: 600; letter-spacing: -.02em }
+.real-overlay span { color: rgba(255,255,255,.6); font-size: 12px }
+</style>

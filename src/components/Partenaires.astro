@@ -1,0 +1,112 @@
+---
+---
+
+<section id="partenaires">
+  <div class="partenaires-inner fade-up">
+    <span class="sec-label">Nos partenaires</span>
+    <p class="sub">Ils nous ont fait confiance pour développer leur communication.</p>
+  </div>
+
+  <div class="logo-stage" id="logoStage">
+    <div class="logo-item"><img src="/logo entente-de-la-têt.webp" alt="Entente de la Têt" /></div>
+    <div class="logo-item"><img src="/Logo-Garage-ACTIPOLE-2.webp" alt="Garage Actipole" /></div>
+    <div class="logo-item"><img src="/logo XV catalan.webp" alt="XV Catalan" /></div>
+    <div class="logo-item"><img src="/LOGO_SARL-LMC-nou.webp" alt="SARL LMC" /></div>
+    <div class="logo-item"><img src="/logo spar.webp" alt="Spar" /></div>
+    <div class="logo-item"><img src="/logo-PEZIN-TOUCH.webp" alt="Pezin Touch" /></div>
+    <div class="logo-item"><img src="/logo-maillotfrancais.png" alt="Maillot Français" /></div>
+  </div>
+</section>
+
+<style>
+  #partenaires {
+    background: #fff;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 4rem 0;
+  }
+  .partenaires-inner { text-align: center; padding: 0 5vw 2.5rem }
+  .sub { font-size: 15px; font-weight: 300; color: var(--light); letter-spacing: -.01em }
+
+  .logo-stage {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .logo-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease;
+    will-change: transform, opacity;
+  }
+
+  .logo-item[data-state="active"] {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    z-index: 3;
+  }
+  .logo-item[data-state="prev"] {
+    transform: translate(calc(-50% - 340px), -50%) scale(0.7);
+    opacity: 0.3;
+    z-index: 2;
+  }
+  .logo-item[data-state="next"] {
+    transform: translate(calc(-50% + 340px), -50%) scale(0.7);
+    opacity: 0.3;
+    z-index: 2;
+  }
+  .logo-item[data-state="hidden"] {
+    transform: translate(calc(-50% + 340px), -50%) scale(0.7);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .logo-item img {
+    height: 150px;
+    width: auto;
+    max-width: 240px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .logo-stage { height: 150px }
+    .logo-item img { height: 100px; max-width: 140px }
+    .logo-item[data-state="prev"]  { transform: translate(calc(-50% - 145px), -50%) scale(0.6) }
+    .logo-item[data-state="next"]  { transform: translate(calc(-50% + 145px), -50%) scale(0.6) }
+    .logo-item[data-state="hidden"]{ transform: translate(calc(-50% + 145px), -50%) scale(0.6) }
+  }
+</style>
+
+<script>
+  const stage = document.getElementById('logoStage')!
+  const items = Array.from(stage.querySelectorAll<HTMLElement>('.logo-item'))
+  const total = items.length
+  let active = 0
+
+  function mod(n: number, m: number) { return ((n % m) + m) % m }
+
+  function update() {
+    const prev = mod(active - 1, total)
+    const next = mod(active + 1, total)
+    items.forEach((el, i) => {
+      if (i === active) el.dataset.state = 'active'
+      else if (i === prev) el.dataset.state = 'prev'
+      else if (i === next) el.dataset.state = 'next'
+      else el.dataset.state = 'hidden'
+    })
+  }
+
+  update()
+
+  // Slide toutes les 2.6s (transition 0.55s + pause ~2s)
+  setInterval(() => {
+    active = mod(active + 1, total)
+    update()
+  }, 2600)
+</script>

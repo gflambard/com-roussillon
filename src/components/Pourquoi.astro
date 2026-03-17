@@ -1,0 +1,46 @@
+---
+---
+
+<section id="pourquoi" class="sec">
+  <div class="sec-inner">
+    <div class="why-grid">
+      <div class="why-text fade-up">
+        <span class="sec-label">Notre histoire</span>
+        <h2 class="sec-title">Marketing de qualité,<br>prix accessibles.</h2>
+        <p>Baptiste, Luca et Thybault ont fondé Com Roussillon en 2024 avec une conviction : <strong>les artisans et petites entreprises méritent une communication professionnelle</strong>, sans se ruiner ni s'y perdre.</p>
+        <p>Un seul interlocuteur, des devis clairs, des délais respectés. Pas de jargon, pas de surprise sur la facture.</p>
+        <a href="#contact" class="btn-dark" style="margin-top:1.5rem">Parlons de votre projet</a>
+      </div>
+      <div class="stats-grid fade-up">
+        <div class="stat-box"><span class="stat-num">+30</span><span class="stat-label">Clients accompagnés</span></div>
+        <div class="stat-box"><span class="stat-num">2024</span><span class="stat-label">Fondée à Perpignan</span></div>
+        <div class="stat-box"><span class="stat-num">5★</span><span class="stat-label">Note Google</span></div>
+        <div class="stat-box"><span class="stat-num">3</span><span class="stat-label">Experts dédiés</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+#pourquoi { background: #fff }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center }
+.why-text p {
+  font-size: 17px; font-weight: 300; color: var(--mid);
+  line-height: 1.7; margin-bottom: 1.2rem; letter-spacing: -.01em;
+}
+.why-text strong { font-weight: 500; color: var(--dark) }
+.stats-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  background: var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.stat-box { background: #fff; padding: 2.5rem 2rem; text-align: center }
+.stat-num {
+  font-size: 3rem; font-weight: 600; color: var(--dark);
+  display: block; letter-spacing: -.04em; line-height: 1;
+}
+.stat-label { font-size: 13px; font-weight: 300; color: var(--light); margin-top: .5rem; display: block; letter-spacing: -.01em }
+
+@media (max-width: 768px) {
+  .why-grid { grid-template-columns: 1fr; gap: 3rem }
+}
+</style>

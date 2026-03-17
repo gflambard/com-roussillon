@@ -1,11 +1,117 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import Services from '../components/Services.astro'
+import Pourquoi from '../components/Pourquoi.astro'
+import Realisations from '../components/Realisations.astro'
+import Avis from '../components/Avis.astro'
+import Partenaires from '../components/Partenaires.astro'
+import Contact from '../components/Contact.astro'
+import Footer from '../components/Footer.astro'
 ---
 
 <Layout>
-	<Welcome />
+  <Nav />
+  <Hero />
+  <Services />
+  <Pourquoi />
+  <Realisations />
+  <Avis />
+  <Partenaires />
+  <Contact />
+  <Footer />
 </Layout>
+
+<script>
+// Align carousels with content grid
+function alignCarousels() {
+  const ref = document.querySelector<HTMLElement>('.sec-inner')
+  if (!ref) return
+  const leftEdge = ref.getBoundingClientRect().left
+  document.querySelectorAll<HTMLElement>('.services-track, .real-track').forEach(t => {
+    t.style.paddingLeft = leftEdge + 'px'
+  })
+  document.querySelectorAll<HTMLElement>('.services-header, .real-header, .carousel-nav').forEach(el => {
+    el.style.paddingLeft = leftEdge + 'px'
+  })
+}
+alignCarousels()
+window.addEventListener('resize', alignCarousels)
+
+// Fade-up intersection observer
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70)
+      obs.unobserve(e.target)
+    }
+  })
+}, { threshold: 0.08 })
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el))
+
+// Carousel
+function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: string) {
+  const track = document.getElementById(trackId) as HTMLElement | null
+  const prev  = document.getElementById(prevId)
+  const next  = document.getElementById(nextId)
+  const dotsEl = document.getElementById(dotsId)
+  if (!track || !prev || !next || !dotsEl) return
+
+  const t = track as HTMLElement
+  const cards = Array.from(t.children) as HTMLElement[]
+  let cur = 0
+
+  function scrollForIndex(i: number) {
+    let off = 0
+    for (let j = 0; j < i; j++) off += cards[j].offsetWidth + 16
+    return off
+  }
+
+  function getMaxScroll() {
+    const wrapWidth = t.parentElement!.offsetWidth
+    const padLeft = parseInt(t.style.paddingLeft) || 0
+    const total = cards.reduce((sum, c) => sum + c.offsetWidth + 16, 0) - 16
+    return Math.max(0, padLeft + total - wrapWidth + 40)
+  }
+
+  // Positions de scroll uniques : chaque carte capped à maxScroll, dédoublonnées
+  const ms = getMaxScroll()
+  const positions: number[] = []
+  for (let i = 0; i < cards.length; i++) {
+    const s = Math.min(scrollForIndex(i), ms)
+    if (positions.length === 0 || s !== positions[positions.length - 1]) {
+      positions.push(s)
+    }
+  }
+
+  dotsEl.innerHTML = ''
+  positions.forEach((_, i) => {
+    const d = document.createElement('div')
+    d.className = 'dot' + (i === 0 ? ' active' : '')
+    d.addEventListener('click', () => goTo(i))
+    dotsEl.appendChild(d)
+  })
+
+  function updateNavBtns() {
+    prev.classList.toggle('visible', cur > 0)
+    next.classList.toggle('visible', cur < positions.length - 1)
+  }
+
+  function goTo(i: number) {
+    cur = Math.max(0, Math.min(i, positions.length - 1))
+    t.style.transform = 'translateX(-' + positions[cur] + 'px)'
+    dotsEl!.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === cur))
+    updateNavBtns()
+  }
+
+  // Au départ : prev caché, next visible s'il y a plusieurs positions
+  updateNavBtns()
+
+  prev.addEventListener('click', () => goTo(cur - 1))
+  next.addEventListener('click', () => goTo(cur + 1))
+}
+
+initCarousel('svcTrack', 'svcPrev', 'svcNext', 'svcDots')
+initCarousel('realTrack', 'realPrev', 'realNext', 'realDots')
+</script>

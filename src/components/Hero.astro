@@ -1,0 +1,83 @@
+---
+---
+
+<section id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Agence de communication – Perpignan &amp; Roussillon</p>
+    <h1>Votre communication,<br><em>enfin simple.</em></h1>
+    <p class="hero-sub">Com Roussillon accompagne les artisans, commerçants et PME du Roussillon avec des solutions accessibles, efficaces et sur mesure.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-hero-gold">Demander un devis gratuit</a>
+      <a href="#realisations" class="btn-outline-hero">Voir nos réalisations</a>
+    </div>
+  </div>
+</section>
+
+<style>
+#hero {
+  position: relative;
+  min-height: 68vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 5vw 3rem;
+}
+/* Image de fond sur pseudo-élément : blur composité une fois par le GPU, pas de re-calcul au scroll */
+#hero::before {
+  content: '';
+  position: absolute; inset: -12px;
+  background-image: url("/hero-canigou.webp");
+  background-size: cover;
+  background-position: center;
+  filter: blur(0px);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.86);
+  z-index: 1;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem;
+}
+#hero h1 {
+  font-size: clamp(3rem, 6.5vw, 5.8rem); font-weight: 600;
+  line-height: 1.06; letter-spacing: -0.03em; color: #fff;
+  max-width: 880px; margin-bottom: 1.5rem;
+}
+#hero h1 em { font-style: italic; color: var(--gold); font-weight: 300 }
+.hero-sub {
+  font-size: 19px; font-weight: 300; color: rgba(255,255,255,0.72);
+  max-width: 560px; line-height: 1.6; margin-bottom: 2.8rem; letter-spacing: -0.01em;
+}
+.hero-btns { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center }
+.btn-hero-gold {
+  background: var(--gold); color: #fff; padding: .78rem 1.8rem;
+  border-radius: 980px; font-size: 15px; font-weight: 500;
+  letter-spacing: -0.01em; text-decoration: none;
+  transition: background .2s; font-family: inherit; display: inline-block;
+}
+.btn-hero-gold:hover { background: #a07d34 }
+
+@media (max-width: 768px) {
+  #hero { padding: 2.5rem 5vw 2.5rem; min-height: 60vh }
+  .hero-sub { font-size: 16px }
+  .hero-btns { flex-direction: column; align-items: center }
+}
+.btn-outline-hero {
+  background: transparent; color: #fff; padding: .78rem 1.8rem;
+  border-radius: 980px; font-size: 15px; font-weight: 400;
+  border: 0.5px solid rgba(255,255,255,0.5); text-decoration: none;
+  cursor: pointer; transition: border-color .2s; font-family: inherit; display: inline-block;
+}
+.btn-outline-hero:hover { border-color: #fff }
+</style>
