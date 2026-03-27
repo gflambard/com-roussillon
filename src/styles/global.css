@@ -59,6 +59,7 @@ body {
 @media (max-width: 768px) {
   .sec { padding: 4rem 5vw }
   .sec-intro { font-size: 15px; margin-bottom: 2rem }
+  .svc-nav-btn, .real-nav-btn, .avis-btn { display: none !important }
 }
 
 /* CAROUSEL NAV */

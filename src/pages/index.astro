@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro'
 import Services from '../components/Services.astro'
 import Pourquoi from '../components/Pourquoi.astro'
 import Realisations from '../components/Realisations.astro'
+import RealisationsAutres from '../components/RealisationsAutres.astro'
 import Avis from '../components/Avis.astro'
 import Partenaires from '../components/Partenaires.astro'
 import Contact from '../components/Contact.astro'
@@ -17,6 +18,7 @@ import Footer from '../components/Footer.astro'
   <Services />
   <Pourquoi />
   <Realisations />
+  <RealisationsAutres />
   <Avis />
   <Partenaires />
   <Contact />
@@ -29,10 +31,10 @@ function alignCarousels() {
   const ref = document.querySelector<HTMLElement>('.sec-inner')
   if (!ref) return
   const leftEdge = ref.getBoundingClientRect().left
-  document.querySelectorAll<HTMLElement>('.services-track, .real-track').forEach(t => {
+  document.querySelectorAll<HTMLElement>('.services-track, .real-track, .ar-track').forEach(t => {
     t.style.paddingLeft = leftEdge + 'px'
   })
-  document.querySelectorAll<HTMLElement>('.services-header, .real-header, .carousel-nav').forEach(el => {
+  document.querySelectorAll<HTMLElement>('.services-header, .real-header, .ar-header, .carousel-nav').forEach(el => {
     el.style.paddingLeft = leftEdge + 'px'
   })
 }
@@ -94,8 +96,8 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
   })
 
   function updateNavBtns() {
-    prev.classList.toggle('visible', cur > 0)
-    next.classList.toggle('visible', cur < positions.length - 1)
+    prev?.classList.toggle('visible', cur > 0)
+    next?.classList.toggle('visible', cur < positions.length - 1)
   }
 
   function goTo(i: number) {
@@ -110,8 +112,17 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
 
   prev.addEventListener('click', () => goTo(cur - 1))
   next.addEventListener('click', () => goTo(cur + 1))
+
+  // Swipe mobile
+  let touchStartX = 0
+  t.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX }, { passive: true })
+  t.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? cur + 1 : cur - 1)
+  }, { passive: true })
 }
 
 initCarousel('svcTrack', 'svcPrev', 'svcNext', 'svcDots')
 initCarousel('realTrack', 'realPrev', 'realNext', 'realDots')
+initCarousel('arTrack', 'arPrev', 'arNext', 'arDots')
 </script>

@@ -1,4 +1,54 @@
 ---
+const reviews = [
+  {
+    initials: "AM",
+    color: "#e8572a",
+    photo: "",
+    name: "Ambre Millot",
+    time: "il y a 7 mois",
+    text: "Superbe boîte de communication ! Je remercie vivement Baptiste pour ses services, réactif et à l'écoute.",
+  },
+  {
+    initials: "BS",
+    color: "#4a90d9",
+    photo: "",
+    name: "Bastien Sole",
+    time: "il y a 8 mois",
+    text: "Super travail, disponible, à l'écoute.",
+  },
+  {
+    initials: "ÉG",
+    color: "#7b5ea7",
+    photo: "",
+    name: "ÉCOLE DE RUGBY Entente de la Têt",
+    time: "il y a 9 mois",
+    text: "Merci à COM Roussillon pour leur professionnalisme et leur efficacité ! Grâce à vous, l'École de Rugby de l'Entente de la Têt gagne en visibilité.",
+  },
+  {
+    initials: "SM",
+    color: "#2a9d8f",
+    photo: "",
+    name: "Sarah M.",
+    time: "il y a 10 mois",
+    text: "Un grand merci pour l'accompagnement logo et communication. Une équipe de véritables professionnels.",
+  },
+  {
+    initials: "LM",
+    color: "#e9c46a",
+    photo: "",
+    name: "Lila Mty",
+    time: "il y a 8 mois",
+    text: "Com Roussillon offre des services très professionnels et de qualité. Je recommande.",
+  },
+  {
+    initials: "VS",
+    color: "#43aa8b",
+    photo: "",
+    name: "V S",
+    time: "il y a 8 mois",
+    text: "Des professionnels très à l'écoute, offrant un service de qualité.",
+  },
+];
 ---
 
 <section id="avis" class="sec" style="background:var(--dark)">
@@ -15,58 +65,55 @@
     <button class="avis-btn avis-next" id="avisNext" aria-label="Suivant">
       <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-  <div class="avis-stage" id="avisStage">
-    <div class="review" data-i="0">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Superbe boîte de communication ! Réactif et à l'écoute, je recommande vivement Baptiste pour ses services.</p>
-      <p class="review-author">Ambre M.</p>
-      <p class="review-source">via Google</p>
-    </div>
-    <div class="review" data-i="1">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Professionnalisme et efficacité au rendez-vous. L'École de Rugby de l'Entente de la Têt gagne en visibilité.</p>
-      <p class="review-author">École de Rugby</p>
-      <p class="review-source">via Google</p>
-    </div>
-    <div class="review" data-i="2">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Un grand merci pour l'accompagnement logo et communication. Une équipe de véritables professionnels.</p>
-      <p class="review-author">Sarah M.</p>
-      <p class="review-source">via Google</p>
-    </div>
-    <div class="review" data-i="3">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Com Roussillon offre des services très professionnels et de qualité. Je recommande.</p>
-      <p class="review-author">Lila Mty</p>
-      <p class="review-source">via Google · il y a 8 mois</p>
-    </div>
-    <div class="review" data-i="4">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Des professionnels très à l'écoute, offrant un service de qualité.</p>
-      <p class="review-author">V S</p>
-      <p class="review-source">via Google · Local Guide · il y a 8 mois</p>
-    </div>
-    <div class="review" data-i="5">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Super travail, disponible, à l'écoute.</p>
-      <p class="review-author">Bastien Sole</p>
-      <p class="review-source">via Google · il y a 7 mois</p>
-    </div>
-  </div>
 
+    <div class="avis-stage" id="avisStage">
+      {reviews.map((r, i) => (
+        <div class="review" data-i={i}>
+          <!-- Avatar floats above the card via negative margin -->
+          <div class="avatar-wrap">
+            <div class="avatar" style={`background:${r.color}`}>
+              {r.photo
+                ? <img src={r.photo} alt={r.name} />
+                : <span>{r.initials}</span>
+              }
+            </div>
+            <div class="google-badge">
+              <svg width="14" height="14" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card body -->
+          <div class="review-card">
+            <div class="review-name">{r.name}</div>
+            <div class="review-time">{r.time}</div>
+            <div class="stars">★★★★★ <span class="verified-badge">✓</span></div>
+            <p class="review-text">{r.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
   </div><!-- end avis-wrap -->
+  <div class="avis-dots-wrap">
+    <div class="carousel-dots" id="avisDots"></div>
+  </div>
 </section>
 
 <style>
   #avis { padding-bottom: 5rem }
+  .avis-dots-wrap { padding: 1.5rem 0 0; display: flex; justify-content: center }
 
   .sec-head {
-    padding: 0 5vw 3.5rem;
+    padding: 0 5vw 1rem;
   }
 
   .avis-stage {
     position: relative;
-    height: 300px;
+    height: 380px;
     overflow: hidden;
   }
 
@@ -74,30 +121,80 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 380px;
-    background: #242424;
-    border-radius: 16px;
-    padding: 2.2rem 1.8rem;
+    width: 340px;
     transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease;
     will-change: transform, opacity;
     cursor: default;
+    text-align: center;
+    touch-action: manipulation;
   }
 
-  /* States set by JS via data-state attribute */
+  /* Avatar in normal flow, overlaps card below via negative margin */
+  .avatar-wrap {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto -40px;
+    z-index: 1;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    overflow: hidden;
+    letter-spacing: -.02em;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .google-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,.4);
+  }
+
+  .review-card {
+    background: #242424;
+    border-radius: 18px;
+    padding: 3rem 1.8rem 2rem;
+    position: relative;
+    z-index: 0;
+  }
+
+  /* States set by JS */
   .review[data-state="active"] {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     z-index: 3;
-    background: #2a2a2a;
   }
   .review[data-state="prev"] {
-    transform: translate(calc(-50% - 420px), -50%) scale(0.84);
+    transform: translate(calc(-50% - 380px), -50%) scale(0.84);
     opacity: 0.45;
     z-index: 2;
     cursor: pointer;
   }
   .review[data-state="next"] {
-    transform: translate(calc(-50% + 420px), -50%) scale(0.84);
+    transform: translate(calc(-50% + 380px), -50%) scale(0.84);
     opacity: 0.45;
     z-index: 2;
     cursor: pointer;
@@ -109,10 +206,55 @@
     pointer-events: none;
   }
 
-  .stars { color: #f5a623; font-size: 14px; letter-spacing: 3px; margin-bottom: 1rem }
-  .review-text { font-size: 14px; font-weight: 300; color: #e0e0e0; line-height: 1.7; margin-bottom: 1.5rem; letter-spacing: -.01em }
-  .review-author { font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 3px }
-  .review-source { font-size: 11px; color: #555; font-weight: 300 }
+  .review-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+  }
+
+  .review-time {
+    font-size: 11px;
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+  }
+
+  .stars {
+    color: #f5a623;
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #4285f4;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0;
+    flex-shrink: 0;
+  }
+
+  .review-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: #ccc;
+    line-height: 1.7;
+    letter-spacing: -.01em;
+  }
 
   .avis-wrap {
     position: relative;
@@ -133,6 +275,7 @@
     transition: background .2s, opacity .2s;
     opacity: 0;
     pointer-events: none;
+    touch-action: manipulation;
   }
   .avis-btn.visible { opacity: 1; pointer-events: auto }
   .avis-btn:hover { background: rgba(255,255,255,0.16) }
@@ -140,8 +283,9 @@
   .avis-next { right: 5vw }
 
   @media (max-width: 768px) {
-    .avis-stage { height: 360px }
+    .avis-stage { height: 420px }
     .review { width: 260px }
+    .review-card { padding: 3rem 1.4rem 1.6rem }
     .review[data-state="prev"] { transform: translate(calc(-50% - 290px), -50%) scale(0.84) }
     .review[data-state="next"] { transform: translate(calc(-50% + 290px), -50%) scale(0.84) }
     .review[data-state="hidden"] { transform: translate(-50%, -50%) scale(0.8) }
@@ -152,11 +296,20 @@
   const stage = document.getElementById('avisStage')!
   const prevBtn = document.getElementById('avisPrev')!
   const nextBtn = document.getElementById('avisNext')!
+  const dotsEl = document.getElementById('avisDots')!
   const cards = Array.from(stage.querySelectorAll<HTMLElement>('.review'))
   const total = cards.length
   let active = 0
 
   function mod(n: number, m: number) { return ((n % m) + m) % m }
+
+  // Dots
+  cards.forEach((_, i) => {
+    const d = document.createElement('div')
+    d.className = 'dot' + (i === 0 ? ' active' : '')
+    d.addEventListener('click', () => goTo(i))
+    dotsEl.appendChild(d)
+  })
 
   function update() {
     const prev = mod(active - 1, total)
@@ -169,6 +322,7 @@
     })
     prevBtn.classList.add('visible')
     nextBtn.classList.add('visible')
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === active))
   }
 
   function goTo(i: number) { active = mod(i, total); update() }
@@ -181,6 +335,14 @@
 
   prevBtn.addEventListener('click', () => goTo(active - 1))
   nextBtn.addEventListener('click', () => goTo(active + 1))
+
+  // Swipe mobile
+  let touchStartX = 0
+  stage.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX }, { passive: true })
+  stage.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? active + 1 : active - 1)
+  }, { passive: true })
 
   update()
 </script>

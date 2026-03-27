@@ -1,4 +1,18 @@
 ---
+const logos = [
+  { src: "/logo entente-de-la-têt.webp", alt: "Entente de la Têt" },
+  { src: "/Logo-Garage-ACTIPOLE-2.webp", alt: "Garage Actipole" },
+  { src: "/logo XV catalan.webp", alt: "XV Catalan" },
+  { src: "/LOGO_SARL-LMC-nou.webp", alt: "SARL LMC" },
+  { src: "/logo spar.webp", alt: "Spar" },
+  { src: "/logo-PEZIN-TOUCH.webp", alt: "Pezin Touch" },
+  { src: "/logo-maillotfrancais.png", alt: "Maillot Français" },
+  { src: "/logo-cotri-diagnostic.png", alt: "Cotri Diagnostic" },
+  { src: "/logo_Cote_Atwear.png", alt: "Côté Artwear" },
+  { src: "/logo-cote-francais.png", alt: "Côté Français" },
+  { src: "/logo-lcs-groupe.png", alt: "LCS Groupe" },
+  { src: "/logo-green-mini-golf.jpg", alt: "Green Mini Golf" },
+]
 ---
 
 <section id="partenaires">
@@ -7,14 +21,15 @@
     <p class="sub">Ils nous ont fait confiance pour développer leur communication.</p>
   </div>
 
-  <div class="logo-stage" id="logoStage">
-    <div class="logo-item"><img src="/logo entente-de-la-têt.webp" alt="Entente de la Têt" /></div>
-    <div class="logo-item"><img src="/Logo-Garage-ACTIPOLE-2.webp" alt="Garage Actipole" /></div>
-    <div class="logo-item"><img src="/logo XV catalan.webp" alt="XV Catalan" /></div>
-    <div class="logo-item"><img src="/LOGO_SARL-LMC-nou.webp" alt="SARL LMC" /></div>
-    <div class="logo-item"><img src="/logo spar.webp" alt="Spar" /></div>
-    <div class="logo-item"><img src="/logo-PEZIN-TOUCH.webp" alt="Pezin Touch" /></div>
-    <div class="logo-item"><img src="/logo-maillotfrancais.png" alt="Maillot Français" /></div>
+  <div class="ticker-wrap">
+    <div class="ticker" id="ticker">
+      <!-- Dupliqué 3x pour un loop sans couture -->
+      {[...logos, ...logos, ...logos].map(l => (
+        <div class="ticker-item">
+          <img src={l.src} alt={l.alt} draggable="false" />
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
@@ -23,90 +38,130 @@
     background: #fff;
     border-top: 0.5px solid var(--border);
     border-bottom: 0.5px solid var(--border);
-    padding: 4rem 0;
-  }
-  .partenaires-inner { text-align: center; padding: 0 5vw 2.5rem }
-  .sub { font-size: 15px; font-weight: 300; color: var(--light); letter-spacing: -.01em }
-
-  .logo-stage {
-    position: relative;
-    height: 200px;
+    padding: 2rem 0;
     overflow: hidden;
   }
 
-  .logo-item {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+  .partenaires-inner { text-align: center; padding: 0 5vw 1.2rem }
+  .sub { font-size: 14px; font-weight: 300; color: var(--light); letter-spacing: -.01em }
+
+  .ticker-wrap {
+    overflow: hidden;
+    /* Fondu sur les bords */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    cursor: grab;
+  }
+  .ticker-wrap:active { cursor: grabbing }
+
+  .ticker {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: max-content;
+    animation: ticker-scroll 28s linear infinite;
+    will-change: transform;
+  }
+  .ticker.paused { animation-play-state: paused }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0) }
+    to   { transform: translateX(calc(-100% / 3)) }
+  }
+
+  .ticker-item {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease;
-    will-change: transform, opacity;
+    height: 150px;
+    padding: 0 1rem;
   }
 
-  .logo-item[data-state="active"] {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-    z-index: 3;
-  }
-  .logo-item[data-state="prev"] {
-    transform: translate(calc(-50% - 340px), -50%) scale(0.7);
-    opacity: 0.3;
-    z-index: 2;
-  }
-  .logo-item[data-state="next"] {
-    transform: translate(calc(-50% + 340px), -50%) scale(0.7);
-    opacity: 0.3;
-    z-index: 2;
-  }
-  .logo-item[data-state="hidden"] {
-    transform: translate(calc(-50% + 340px), -50%) scale(0.7);
-    opacity: 0;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .logo-item img {
+  .ticker-item img {
     height: 150px;
     width: auto;
     max-width: 240px;
     object-fit: contain;
+    draggable: false;
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
   }
 
   @media (max-width: 768px) {
-    .logo-stage { height: 150px }
-    .logo-item img { height: 100px; max-width: 140px }
-    .logo-item[data-state="prev"]  { transform: translate(calc(-50% - 145px), -50%) scale(0.6) }
-    .logo-item[data-state="next"]  { transform: translate(calc(-50% + 145px), -50%) scale(0.6) }
-    .logo-item[data-state="hidden"]{ transform: translate(calc(-50% + 145px), -50%) scale(0.6) }
+    .ticker-item { height: 100px }
+    .ticker-item img { height: 100px; max-width: 160px }
+    .ticker-item { padding: 0 .6rem }
+    .ticker { gap: 2rem; animation-duration: 20s }
   }
 </style>
 
 <script>
-  const stage = document.getElementById('logoStage')!
-  const items = Array.from(stage.querySelectorAll<HTMLElement>('.logo-item'))
-  const total = items.length
-  let active = 0
+  const wrap = document.querySelector<HTMLElement>('.ticker-wrap')!
+  const ticker = document.getElementById('ticker')!
 
-  function mod(n: number, m: number) { return ((n % m) + m) % m }
+  // Pause au hover
+  wrap.addEventListener('mouseenter', () => ticker.classList.add('paused'))
+  wrap.addEventListener('mouseleave', () => ticker.classList.remove('paused'))
 
-  function update() {
-    const prev = mod(active - 1, total)
-    const next = mod(active + 1, total)
-    items.forEach((el, i) => {
-      if (i === active) el.dataset.state = 'active'
-      else if (i === prev) el.dataset.state = 'prev'
-      else if (i === next) el.dataset.state = 'next'
-      else el.dataset.state = 'hidden'
-    })
+  // Drag / Swipe (souris + touch)
+  let startX = 0
+  let startTime = 0
+  let offsetAtStart = 0
+  let isDragging = false
+
+  function getCurrentOffset() {
+    const matrix = new DOMMatrixReadOnly(window.getComputedStyle(ticker).transform)
+    return matrix.m41
   }
 
-  update()
+  function dragStart(clientX: number) {
+    isDragging = true
+    startX = clientX
+    startTime = Date.now()
+    offsetAtStart = getCurrentOffset()
+    ticker.style.transform = `translateX(${offsetAtStart}px)`
+    ticker.style.animation = 'none'
+    wrap.style.cursor = 'grabbing'
+  }
 
-  // Slide toutes les 2.6s (transition 0.55s + pause ~2s)
-  setInterval(() => {
-    active = mod(active + 1, total)
-    update()
-  }, 2600)
+  function dragMove(clientX: number) {
+    if (!isDragging) return
+    ticker.style.transform = `translateX(${offsetAtStart + clientX - startX}px)`
+  }
+
+  function dragEnd(clientX: number) {
+    if (!isDragging) return
+    isDragging = false
+    wrap.style.cursor = 'grab'
+    const dx = clientX - startX
+    const velocity = dx / (Date.now() - startTime)
+    const finalOffset = offsetAtStart + dx + velocity * 150
+
+    ticker.style.transition = 'transform 0.4s ease-out'
+    ticker.style.transform = `translateX(${finalOffset}px)`
+
+    setTimeout(() => {
+      ticker.style.transition = ''
+      ticker.style.transform = ''
+      // Reprendre l'animation depuis la bonne position
+      const loopWidth = ticker.scrollWidth / 3
+      const duration = 28000
+      // Normalise finalOffset dans [0, loopWidth]
+      const normalized = ((-finalOffset) % loopWidth + loopWidth) % loopWidth
+      const delay = -(normalized / loopWidth) * duration
+      ticker.style.animation = `ticker-scroll ${duration}ms linear ${delay}ms infinite`
+    }, 420)
+  }
+
+  // Souris
+  wrap.addEventListener('mousedown', e => dragStart(e.clientX))
+  window.addEventListener('mousemove', e => dragMove(e.clientX))
+  window.addEventListener('mouseup', e => dragEnd(e.clientX))
+
+  // Touch
+  wrap.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true })
+  wrap.addEventListener('touchmove', e => dragMove(e.touches[0].clientX), { passive: true })
+  wrap.addEventListener('touchend', e => dragEnd(e.changedTouches[0].clientX), { passive: true })
 </script>

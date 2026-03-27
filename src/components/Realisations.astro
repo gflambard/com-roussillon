@@ -3,9 +3,9 @@
 
 <section id="realisations">
   <div class="real-header fade-up">
-    <span class="sec-label">Nos réalisations</span>
-    <h2 class="sec-title">Ce qu'on a fait,<br>c'est notre meilleur argument.</h2>
-    <p class="sec-intro">Sites, logos, visuels — quelques projets récents pour des clients locaux du Roussillon.</p>
+    <span class="sec-label">Nos réalisations – Site web</span>
+    <h2 class="sec-title">Des sites qui travaillent<br>pour vous, 24h/24.</h2>
+    <p class="sec-intro">Vitrine, e-commerce ou club sportif — chaque site conçu sur mesure, à votre image.</p>
   </div>
   <div class="real-track-wrap">
     <button class="real-nav-btn real-nav-prev" id="realPrev" aria-label="Précédent">
@@ -17,18 +17,27 @@
     <div class="real-track" id="realTrack">
 
       <a class="real-card fade-up" href="https://maillotfrancais.fr/" target="_blank" rel="noopener">
-        <img src="/site maillot francais.png" alt="Maillot Français" class="real-img" />
-        <div class="real-overlay"><strong>Maillot Français</strong><span>E-commerce</span></div>
+        <div class="real-img-wrap">
+          <img src="/site maillot francais.webp" alt="Maillot Français" class="real-img" />
+          <div class="real-overlay"><strong>Maillot Français</strong><span>E-commerce</span></div>
+        </div>
+        <div class="real-label"><strong>Maillot Français</strong><span>E-commerce</span></div>
+      </a>
+
+      <a class="real-card fade-up" href="https://coteartwear.fr/" target="_blank" rel="noopener">
+        <div class="real-img-wrap">
+          <img src="/site coteartwear.webp" alt="Côté Artwear" class="real-img" />
+          <div class="real-overlay"><strong>Côté Artwear</strong><span>E-commerce · Marque de vêtement</span></div>
+        </div>
+        <div class="real-label"><strong>Côté Artwear</strong><span>E-commerce · Marque de vêtement</span></div>
       </a>
 
       <a class="real-card fade-up" href="https://entente-de-la-tet.fr/" target="_blank" rel="noopener">
-        <img src="/site entente.webp" alt="Entente de la Têt" class="real-img" />
-        <div class="real-overlay"><strong>Entente de la Têt</strong><span>Site vitrine · Club de rugby</span></div>
-      </a>
-
-      <a class="real-card fade-up" href="https://xvcatalan.com/" target="_blank" rel="noopener">
-        <img src="/site XV catalan.webp" alt="XV Catalan" class="real-img" />
-        <div class="real-overlay"><strong>XV Catalan</strong><span>Site vitrine · Club de rugby</span></div>
+        <div class="real-img-wrap">
+          <img src="/site entente de la têt.webp" alt="Entente de la Têt" class="real-img" />
+          <div class="real-overlay"><strong>Entente de la Têt</strong><span>Site vitrine · Club de rugby</span></div>
+        </div>
+        <div class="real-label"><strong>Entente de la Têt</strong><span>Site vitrine · Club de rugby</span></div>
       </a>
 
     </div>
@@ -39,7 +48,7 @@
 </section>
 
 <style>
-#realisations { background: var(--bg-off); padding: 7rem 0 }
+#realisations { background: var(--bg-off); padding: 7rem 0 3rem }
 .real-header { padding: 0 5vw 2.5rem }
 .real-track-wrap { overflow-x: clip; overflow-y: visible; position: relative }
 
@@ -66,23 +75,58 @@
   transition: transform .4s cubic-bezier(.25,.46,.45,.94);
 }
 .real-card {
-  flex: 0 0 480px; background: #e8e8e3; border-radius: var(--radius);
-  min-height: 320px; position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 480px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  text-decoration: none;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  transition: transform .25s, box-shadow .25s;
+  flex-shrink: 0;
+}
+.real-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.13) }
+
+.real-img-wrap {
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
 }
 .real-img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: top center;
-  position: absolute; inset: 0;
   display: block;
+  position: absolute; inset: 0;
+  object-fit: cover;
+  object-position: top center;
 }
+
+
 .real-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 55%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 1.4rem 1.6rem;
   opacity: 0; transition: opacity .3s;
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 1.8rem 2rem;
 }
+.real-overlay strong { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: -.02em }
+.real-overlay span { color: rgba(255,255,255,.65); font-size: 12px }
 .real-card:hover .real-overlay { opacity: 1 }
-.real-overlay strong { color: #fff; font-size: 16px; font-weight: 600; letter-spacing: -.02em }
-.real-overlay span { color: rgba(255,255,255,.6); font-size: 12px }
+
+.real-label { display: none }
+
+@media (max-width: 768px) {
+  .real-track { padding-left: 1rem; gap: 12px }
+  .real-card { flex: 0 0 calc(100vw - 2rem) }
+  .real-img-wrap { height: 200px }
+  .real-overlay { opacity: 0 !important }
+  .real-label {
+    display: flex; flex-direction: column;
+    padding: .7rem 1rem;
+    background: #fff;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .real-label strong { font-size: 13px; font-weight: 600; color: var(--dark); letter-spacing: -.01em }
+  .real-label span { font-size: 11px; color: #86868b; font-weight: 300 }
+}
 </style>

@@ -4,43 +4,147 @@
 <section id="pourquoi" class="sec">
   <div class="sec-inner">
     <div class="why-grid">
+
       <div class="why-text fade-up">
         <span class="sec-label">Notre histoire</span>
-        <h2 class="sec-title">Marketing de qualité,<br>prix accessibles.</h2>
-        <p>Baptiste, Luca et Thybault ont fondé Com Roussillon en 2024 avec une conviction : <strong>les artisans et petites entreprises méritent une communication professionnelle</strong>, sans se ruiner ni s'y perdre.</p>
-        <p>Un seul interlocuteur, des devis clairs, des délais respectés. Pas de jargon, pas de surprise sur la facture.</p>
-        <a href="#contact" class="btn-dark" style="margin-top:1.5rem">Parlons de votre projet</a>
+        <h2 class="why-title">Marketing de qualité,<br>prix accessibles.</h2>
+        <p class="why-p">Baptiste, Luca et Thybault ont fondé Com Roussillon en 2024 avec une conviction : <strong>les artisans et petites entreprises méritent une communication professionnelle</strong>, sans se ruiner ni s'y perdre.</p>
+        <p class="why-p">Un seul interlocuteur, des devis clairs, des délais respectés. Pas de jargon, pas de surprise sur la facture.</p>
+        <div class="why-ctas">
+          <a href="#contact" class="btn-white">Parlons de votre projet</a>
+          <a href="/notre-histoire" class="btn-text">Découvrir notre histoire →</a>
+        </div>
       </div>
-      <div class="stats-grid fade-up">
-        <div class="stat-box"><span class="stat-num">+30</span><span class="stat-label">Clients accompagnés</span></div>
-        <div class="stat-box"><span class="stat-num">2024</span><span class="stat-label">Fondée à Perpignan</span></div>
-        <div class="stat-box"><span class="stat-num">5★</span><span class="stat-label">Note Google</span></div>
-        <div class="stat-box"><span class="stat-num">3</span><span class="stat-label">Experts dédiés</span></div>
+
+      <div class="stats-wrap fade-up">
+        <div class="stat-item">
+          <span class="stat-num">+30</span>
+          <span class="stat-label">Clients accompagnés</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">2024</span>
+          <span class="stat-label">Fondée à Perpignan</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5★</span>
+          <span class="stat-label">Note Google</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Experts dédiés</span>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <style>
-#pourquoi { background: #fff }
-.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center }
-.why-text p {
-  font-size: 17px; font-weight: 300; color: var(--mid);
-  line-height: 1.7; margin-bottom: 1.2rem; letter-spacing: -.01em;
+#pourquoi { background: var(--dark) }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
 }
-.why-text strong { font-weight: 500; color: var(--dark) }
-.stats-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-  background: var(--border); border-radius: var(--radius); overflow: hidden;
+
+.why-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 1.4rem;
 }
-.stat-box { background: #fff; padding: 2.5rem 2rem; text-align: center }
+
+.why-p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86868b;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  letter-spacing: -.01em;
+}
+.why-p strong { font-weight: 500; color: #e0e0e0 }
+
+.why-ctas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .why-ctas {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
+
+.btn-white {
+  background: #fff;
+  color: var(--dark);
+  padding: .78rem 1.8rem;
+  border-radius: 980px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.btn-white:hover { background: #f0f0f0 }
+
+.btn-text {
+  color: #86868b;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  letter-spacing: -.01em;
+  transition: color .2s;
+  white-space: nowrap;
+}
+.btn-text:hover { color: #fff }
+
+/* Stats */
+.stats-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.stat-item {
+  padding: 2.5rem 2rem;
+  border: 0.5px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.stat-item:nth-child(1) { border-top-left-radius: var(--radius) }
+.stat-item:nth-child(2) { border-top-right-radius: var(--radius) }
+.stat-item:nth-child(3) { border-bottom-left-radius: var(--radius) }
+.stat-item:nth-child(4) { border-bottom-right-radius: var(--radius) }
+
 .stat-num {
-  font-size: 3rem; font-weight: 600; color: var(--dark);
-  display: block; letter-spacing: -.04em; line-height: 1;
+  font-size: 3.4rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: -.04em;
+  line-height: 1;
 }
-.stat-label { font-size: 13px; font-weight: 300; color: var(--light); margin-top: .5rem; display: block; letter-spacing: -.01em }
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: #86868b;
+  letter-spacing: -.01em;
+}
 
 @media (max-width: 768px) {
   .why-grid { grid-template-columns: 1fr; gap: 3rem }
+  .stat-num { font-size: 2.8rem }
+  .stat-item { padding: 1.8rem 1.4rem }
 }
 </style>

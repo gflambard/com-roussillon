@@ -1,0 +1,236 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout title="Notre histoire – Com Roussillon" description="Découvrez l'histoire de Com Roussillon, fondée par Baptiste, Luca et Thybault à Perpignan en 2024.">
+  <Nav />
+
+  <!-- Hero -->
+  <section class="nh-hero">
+    <div class="sec-inner">
+      <span class="sec-label" style="color:var(--gold)">Notre histoire</span>
+      <h1 class="nh-title">Trois amis,<br>une conviction.</h1>
+      <p class="nh-intro">Rendre le marketing accessible à tous — en particulier aux petites entreprises et artisans de leur région.</p>
+    </div>
+  </section>
+
+  <!-- Fondateurs -->
+  <section class="nh-founders">
+    <div class="sec-inner">
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="founder-initial">B</div>
+          <strong>Baptiste</strong>
+          <span>Design graphique</span>
+        </div>
+        <div class="founder-card">
+          <div class="founder-initial">L</div>
+          <strong>Luca</strong>
+          <span>Communication</span>
+        </div>
+        <div class="founder-card">
+          <div class="founder-initial">T</div>
+          <strong>Thybault</strong>
+          <span>Marketing digital</span>
+        </div>
+      </div>
+      <p class="nh-body light" style="margin-top:3rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center">L'histoire de la création de Com Roussillon commence avec trois amis, <strong>Baptiste, Luca et Thybault</strong>, unis par une vision commune : rendre le marketing accessible à tous, en particulier aux petites entreprises et artisans de leur région. Ayant grandi ensemble, ils ont toujours été animés par l'envie de faire la différence — et après avoir chacun suivi leur propre parcours professionnel, ils ont décidé de combiner leurs compétences pour atteindre cet objectif.</p>
+    </div>
+  </section>
+
+  <!-- Genèse — image gauche, texte droite -->
+  <section class="nh-split">
+    <div class="sec-inner">
+      <div class="split-grid">
+        <div class="split-img">
+          <div class="img-placeholder">
+            <span>Photo à ajouter</span>
+          </div>
+        </div>
+        <div class="split-text">
+          <span class="sec-label">La genèse du projet</span>
+          <div class="chapter-bar"></div>
+          <p class="nh-body">Baptiste, passionné de design graphique, Luca, amateur de communication, et Thybault, fervent adepte du marketing digital, se sont retrouvés à un <strong>moment charnière de leur vie professionnelle</strong>. Ils ont constaté que de nombreuses petites entreprises locales avaient du mal à accéder à des services de marketing de qualité, souvent trop coûteux ou complexes.</p>
+          <p class="nh-body">Conscients de cette lacune, ils ont décidé de fonder <strong>Com Roussillon en 2024</strong>, avec l'idée de révolutionner l'accès au marketing en le démocratisant. Leur ambition était simple mais puissante : offrir des services de marketing accessibles, adaptés aux besoins et aux budgets des petites entreprises, tout en maintenant une qualité professionnelle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission — texte gauche, image droite -->
+  <section class="nh-split nh-split-alt">
+    <div class="sec-inner">
+      <div class="split-grid">
+        <div class="split-text">
+          <span class="sec-label">La mission</span>
+          <div class="chapter-bar"></div>
+          <p class="nh-body">Com Roussillon s'est donnée pour mission de <strong>simplifier le marketing pour ceux qui en ont le plus besoin</strong>, en créant des solutions sur mesure, à la fois abordables et efficaces. Leur offre comprend la création d'identités visuelles, la gestion des réseaux sociaux, la conception de sites web, et des stratégies marketing adaptées à chaque client — qu'il soit un artisan local ou une petite PME.</p>
+        </div>
+        <div class="split-img">
+          <div class="img-placeholder">
+            <span>Photo à ajouter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="nh-cta">
+    <div class="sec-inner" style="text-align:center">
+      <h2 class="nh-cta-title">Prêt à travailler ensemble ?</h2>
+      <p class="nh-cta-sub">Parlez-nous de votre projet, on s'occupe du reste.</p>
+      <a href="/#contact" class="btn-dark">Demander un devis gratuit</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .nh-hero {
+    background: var(--dark);
+    padding: 8rem 5vw 5rem;
+  }
+  .nh-title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -.04em;
+    line-height: 1.05;
+    color: #fff;
+    margin: 1rem 0 1.5rem;
+  }
+  .nh-intro {
+    font-size: 18px;
+    font-weight: 300;
+    color: #86868b;
+    line-height: 1.7;
+    max-width: 560px;
+    letter-spacing: -.01em;
+  }
+
+  /* Fondateurs */
+  .nh-founders {
+    background: var(--dark);
+    padding: 0 5vw 6rem;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .founders-grid {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .founder-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    padding: 1.8rem;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+  }
+  .founder-initial {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: .4rem;
+  }
+  .founder-card strong { font-size: 16px; font-weight: 600; color: #fff }
+  .founder-card span { font-size: 12px; font-weight: 300; color: #86868b; letter-spacing: .02em; text-transform: uppercase }
+
+  /* Split sections */
+  .nh-split { background: #fff; padding: 7rem 5vw }
+  .nh-split-alt { background: var(--bg-off) }
+
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .split-grid.reverse { direction: rtl }
+  .split-grid.reverse > * { direction: ltr }
+
+  .split-img { width: 100% }
+
+  .img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #e8e8e3;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+  }
+  .img-placeholder span {
+    font-size: 13px;
+    color: #aaa;
+    font-weight: 300;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  .chapter-bar {
+    width: 32px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin: .8rem 0 1.6rem;
+  }
+
+  .nh-body {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    letter-spacing: -.01em;
+    margin-bottom: 1.2rem;
+  }
+  .nh-body:last-child { margin-bottom: 0 }
+  .nh-body strong { font-weight: 500; color: var(--dark) }
+  .nh-body.light { color: #86868b }
+  .nh-body.light strong { color: #e0e0e0 }
+
+  /* CTA */
+  .nh-cta {
+    background: var(--dark);
+    padding: 7rem 5vw;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .nh-cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -.03em;
+    color: #fff;
+    margin-bottom: .8rem;
+  }
+  .nh-cta-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86868b;
+    margin-bottom: 2.5rem;
+    letter-spacing: -.01em;
+  }
+  .nh-cta .btn-dark {
+    background: #fff;
+    color: var(--dark);
+  }
+  .nh-cta .btn-dark:hover { background: #f0f0f0 }
+
+  @media (max-width: 768px) {
+    .nh-hero { padding: 6rem 5vw 4rem }
+    .nh-founders { padding: 0 5vw 4rem }
+    .founders-grid { flex-direction: column; gap: 1rem }
+    .split-grid { grid-template-columns: 1fr; gap: 2.5rem }
+    .split-grid.reverse { direction: ltr }
+    .nh-split { padding: 5rem 5vw }
+    .nh-cta { padding: 5rem 5vw }
+  }
+</style>
