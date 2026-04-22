@@ -4,7 +4,11 @@
       "Bash(npx astro:*)",
       "Bash(node -e \":*)",
       "Bash(python3 -c \":*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(npm list:*)",
+      "Bash(npm show:*)",
+      "Bash(npm install:*)",
+      "Bash(npm audit:*)"
     ]
   }
 }

@@ -45,9 +45,7 @@ import Footer from '../components/Footer.astro'
     <div class="sec-inner">
       <div class="split-grid">
         <div class="split-img">
-          <div class="img-placeholder">
-            <span>Photo à ajouter</span>
-          </div>
+          <img src="/logo comroussillon.webp" alt="Logo Com Roussillon" class="split-photo" />
         </div>
         <div class="split-text">
           <span class="sec-label">La genèse du projet</span>
@@ -69,9 +67,7 @@ import Footer from '../components/Footer.astro'
           <p class="nh-body">Com Roussillon s'est donnée pour mission de <strong>simplifier le marketing pour ceux qui en ont le plus besoin</strong>, en créant des solutions sur mesure, à la fois abordables et efficaces. Leur offre comprend la création d'identités visuelles, la gestion des réseaux sociaux, la conception de sites web, et des stratégies marketing adaptées à chaque client — qu'il soit un artisan local ou une petite PME.</p>
         </div>
         <div class="split-img">
-          <div class="img-placeholder">
-            <span>Photo à ajouter</span>
-          </div>
+          <img src="/audit-et-conseils.png" alt="Audit et conseils" class="split-photo" />
         </div>
       </div>
     </div>
@@ -160,22 +156,12 @@ import Footer from '../components/Footer.astro'
 
   .split-img { width: 100% }
 
-  .img-placeholder {
+  .split-photo {
     width: 100%;
     aspect-ratio: 4/3;
-    background: #e8e8e3;
+    object-fit: contain;
     border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #ccc;
-  }
-  .img-placeholder span {
-    font-size: 13px;
-    color: #aaa;
-    font-weight: 300;
-    letter-spacing: .05em;
-    text-transform: uppercase;
+    display: block;
   }
 
   .chapter-bar {

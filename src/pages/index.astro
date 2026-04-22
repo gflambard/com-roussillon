@@ -39,7 +39,6 @@ function alignCarousels() {
   })
 }
 alignCarousels()
-window.addEventListener('resize', alignCarousels)
 
 // Fade-up intersection observer
 const obs = new IntersectionObserver(entries => {
@@ -63,37 +62,46 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
   const t = track as HTMLElement
   const cards = Array.from(t.children) as HTMLElement[]
   let cur = 0
+  let positions: number[] = []
+
+  function getGap() {
+    return parseFloat(getComputedStyle(t).gap) || 16
+  }
 
   function scrollForIndex(i: number) {
+    const gap = getGap()
     let off = 0
-    for (let j = 0; j < i; j++) off += cards[j].offsetWidth + 16
+    for (let j = 0; j < i; j++) off += cards[j].offsetWidth + gap
     return off
   }
 
   function getMaxScroll() {
+    const gap = getGap()
     const wrapWidth = t.parentElement!.offsetWidth
     const padLeft = parseInt(t.style.paddingLeft) || 0
-    const total = cards.reduce((sum, c) => sum + c.offsetWidth + 16, 0) - 16
+    const total = cards.reduce((sum, c) => sum + c.offsetWidth + gap, 0) - gap
     return Math.max(0, padLeft + total - wrapWidth + 40)
   }
 
-  // Positions de scroll uniques : chaque carte capped à maxScroll, dédoublonnées
-  const ms = getMaxScroll()
-  const positions: number[] = []
-  for (let i = 0; i < cards.length; i++) {
-    const s = Math.min(scrollForIndex(i), ms)
-    if (positions.length === 0 || s !== positions[positions.length - 1]) {
-      positions.push(s)
+  function buildPositions() {
+    const ms = getMaxScroll()
+    positions = []
+    for (let i = 0; i < cards.length; i++) {
+      const s = Math.min(scrollForIndex(i), ms)
+      if (positions.length === 0 || s !== positions[positions.length - 1]) {
+        positions.push(s)
+      }
     }
+    dotsEl!.innerHTML = ''
+    positions.forEach((_, i) => {
+      const d = document.createElement('div')
+      d.className = 'dot' + (i === cur ? ' active' : '')
+      d.addEventListener('click', () => goTo(i))
+      dotsEl!.appendChild(d)
+    })
+    if (cur >= positions.length) cur = Math.max(0, positions.length - 1)
+    updateNavBtns()
   }
-
-  dotsEl.innerHTML = ''
-  positions.forEach((_, i) => {
-    const d = document.createElement('div')
-    d.className = 'dot' + (i === 0 ? ' active' : '')
-    d.addEventListener('click', () => goTo(i))
-    dotsEl.appendChild(d)
-  })
 
   function updateNavBtns() {
     prev?.classList.toggle('visible', cur > 0)
@@ -107,8 +115,7 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
     updateNavBtns()
   }
 
-  // Au départ : prev caché, next visible s'il y a plusieurs positions
-  updateNavBtns()
+  buildPositions()
 
   prev.addEventListener('click', () => goTo(cur - 1))
   next.addEventListener('click', () => goTo(cur + 1))
@@ -120,9 +127,21 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
     const diff = touchStartX - e.changedTouches[0].clientX
     if (Math.abs(diff) > 50) goTo(diff > 0 ? cur + 1 : cur - 1)
   }, { passive: true })
+
+  return buildPositions
 }
 
-initCarousel('svcTrack', 'svcPrev', 'svcNext', 'svcDots')
-initCarousel('realTrack', 'realPrev', 'realNext', 'realDots')
-initCarousel('arTrack', 'arPrev', 'arNext', 'arDots')
+// Initialiser après chargement complet pour que offsetWidth soit correct (images chargées)
+window.addEventListener('load', () => {
+  alignCarousels()
+  const rebuilds = [
+    initCarousel('svcTrack', 'svcPrev', 'svcNext', 'svcDots'),
+    initCarousel('realTrack', 'realPrev', 'realNext', 'realDots'),
+    initCarousel('arTrack', 'arPrev', 'arNext', 'arDots'),
+  ]
+  window.addEventListener('resize', () => {
+    alignCarousels()
+    rebuilds.forEach(r => r?.())
+  })
+})
 </script>
