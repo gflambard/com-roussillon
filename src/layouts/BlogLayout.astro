@@ -11,12 +11,46 @@ interface Props {
   readTime: string
   heroTitle: string
   heroSubtitle?: string
+  /** ISO 8601 date for SEO. Falls back to today if not provided. */
+  datePublished?: string
+  image?: string
 }
 
-const { title, description, category, date, readTime, heroTitle, heroSubtitle } = Astro.props
+const {
+  title,
+  description,
+  category,
+  date,
+  readTime,
+  heroTitle,
+  heroSubtitle,
+  datePublished,
+  image = '/hero-canigou.webp',
+} = Astro.props
+
+const siteUrl = Astro.site ?? new URL('https://comroussillon.fr')
+const url = new URL(Astro.url.pathname, siteUrl).toString()
+
+const blogPosting = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: heroTitle,
+  description,
+  image: new URL(image, siteUrl).toString(),
+  url,
+  mainEntityOfPage: url,
+  articleSection: category,
+  datePublished: datePublished ?? new Date().toISOString(),
+  author: { '@type': 'Organization', name: 'Com Roussillon' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Com Roussillon',
+    logo: { '@type': 'ImageObject', url: new URL('/logo-comroussillon.webp', siteUrl).toString() },
+  },
+}
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} type="article" image={image} jsonLd={blogPosting}>
   <Nav />
 
   <div class="read-progress" id="readProgress"></div>
@@ -34,7 +68,7 @@ const { title, description, category, date, readTime, heroTitle, heroSubtitle } 
     </div>
   </div>
 
-  <main class="article-main">
+  <main id="main" class="article-main">
     <div class="article-content">
       <slot />
     </div>

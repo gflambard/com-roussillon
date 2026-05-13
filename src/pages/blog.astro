@@ -100,7 +100,7 @@ const articles = [
     </div>
   </div>
 
-  <main class="blog-main">
+  <main id="main" class="blog-main">
     <div class="blog-grid">
       {articles.map((a, i) => (
         <a href={a.slug} class={`blog-card ${i === 0 ? 'featured' : ''}`}>

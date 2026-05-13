@@ -1,15 +1,61 @@
 ---
 import '../styles/global.css'
+import CookieConsent from '../components/CookieConsent.astro'
 
 interface Props {
   title?: string
   description?: string
+  image?: string
+  type?: 'website' | 'article'
+  noindex?: boolean
+  jsonLd?: Record<string, any> | Record<string, any>[]
 }
 
 const {
   title = 'Com Roussillon – Agence de communication à Perpignan',
   description = 'Com Roussillon, agence de communication à Perpignan. Création de sites web, logos, réseaux sociaux, impression et vêtements personnalisés pour artisans et PME du Roussillon.',
+  image = '/hero-canigou.webp',
+  type = 'website',
+  noindex = false,
+  jsonLd,
 } = Astro.props
+
+const siteUrl = Astro.site ?? new URL('https://comroussillon.fr')
+const canonical = new URL(Astro.url.pathname, siteUrl).toString()
+const ogImage = new URL(image, siteUrl).toString()
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Com Roussillon',
+  image: new URL('/logo-comroussillon.webp', siteUrl).toString(),
+  '@id': siteUrl.toString(),
+  url: siteUrl.toString(),
+  telephone: '+33781597034',
+  email: 'comroussillon@gmail.com',
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '9 Espace Méditerranée',
+    addressLocality: 'Perpignan',
+    postalCode: '66000',
+    addressCountry: 'FR',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Perpignan' },
+    { '@type': 'AdministrativeArea', name: 'Pyrénées-Orientales' },
+    { '@type': 'AdministrativeArea', name: 'Roussillon' },
+  ],
+  sameAs: [
+    'https://www.instagram.com/com_roussillon/',
+    'https://www.facebook.com/profile.php?id=61568516977029',
+    'https://www.linkedin.com/company/comroussillon/',
+  ],
+}
+
+const jsonLdData = jsonLd
+  ? Array.isArray(jsonLd) ? [localBusiness, ...jsonLd] : [localBusiness, jsonLd]
+  : localBusiness
 ---
 
 <!doctype html>
@@ -17,23 +63,40 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1d1d1f" />
     <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-    <meta name="generator" content={Astro.generator} />
+    <link rel="apple-touch-icon" href="/favicon-32x32.png" />
+    <link rel="canonical" href={canonical} />
+    <link rel="preload" as="image" href="/hero-canigou.webp" fetchpriority="high" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Com Roussillon" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="fr_FR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLV3N7WTHD"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BLV3N7WTHD');
-    </script>
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLdData)} />
+
+    <!-- Google Analytics — chargé uniquement après consentement (voir CookieConsent.astro) -->
   </head>
   <body>
+    <a href="#main" class="skip-link">Aller au contenu</a>
     <slot />
+    <CookieConsent />
   </body>
 </html>

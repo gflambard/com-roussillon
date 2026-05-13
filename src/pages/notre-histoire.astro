@@ -7,6 +7,7 @@ import Footer from '../components/Footer.astro'
 <Layout title="Notre histoire – Com Roussillon" description="Découvrez l'histoire de Com Roussillon, fondée par Baptiste, Luca et Thybault à Perpignan en 2024.">
   <Nav />
 
+  <main id="main">
   <!-- Hero -->
   <section class="nh-hero">
     <div class="sec-inner">
@@ -45,7 +46,7 @@ import Footer from '../components/Footer.astro'
     <div class="sec-inner">
       <div class="split-grid">
         <div class="split-img">
-          <img src="/logo comroussillon.webp" alt="Logo Com Roussillon" class="split-photo" />
+          <img src="/logo-comroussillon.webp" alt="Logo Com Roussillon" class="split-photo" loading="lazy" decoding="async" />
         </div>
         <div class="split-text">
           <span class="sec-label">La genèse du projet</span>
@@ -67,7 +68,7 @@ import Footer from '../components/Footer.astro'
           <p class="nh-body">Com Roussillon s'est donnée pour mission de <strong>simplifier le marketing pour ceux qui en ont le plus besoin</strong>, en créant des solutions sur mesure, à la fois abordables et efficaces. Leur offre comprend la création d'identités visuelles, la gestion des réseaux sociaux, la conception de sites web, et des stratégies marketing adaptées à chaque client — qu'il soit un artisan local ou une petite PME.</p>
         </div>
         <div class="split-img">
-          <img src="/audit-et-conseils.png" alt="Audit et conseils" class="split-photo" />
+          <img src="/audit-et-conseils.webp" alt="Audit et conseils en communication pour les entreprises du Roussillon" class="split-photo" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -81,6 +82,7 @@ import Footer from '../components/Footer.astro'
       <a href="/#contact" class="btn-dark">Demander un devis gratuit</a>
     </div>
   </section>
+  </main>
 
   <Footer />
 </Layout>

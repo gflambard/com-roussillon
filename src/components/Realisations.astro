@@ -16,25 +16,25 @@
     </button>
     <div class="real-track" id="realTrack">
 
-      <a class="real-card fade-up" href="https://maillotfrancais.fr/" target="_blank" rel="noopener">
+      <a class="real-card fade-up" href="https://maillotfrancais.fr/" target="_blank" rel="noopener noreferrer">
         <div class="real-img-wrap">
-          <img src="/site maillot francais.webp" alt="Maillot Français" class="real-img" />
+          <img src="/site-maillot-francais.webp" alt="Aperçu du site e-commerce Maillot Français réalisé par Com Roussillon" class="real-img" loading="lazy" decoding="async" />
           <div class="real-overlay"><strong>Maillot Français</strong><span>E-commerce</span></div>
         </div>
         <div class="real-label"><strong>Maillot Français</strong><span>E-commerce</span></div>
       </a>
 
-      <a class="real-card fade-up" href="https://coteartwear.fr/" target="_blank" rel="noopener">
+      <a class="real-card fade-up" href="https://coteartwear.fr/" target="_blank" rel="noopener noreferrer">
         <div class="real-img-wrap">
-          <img src="/site coteartwear.webp" alt="Côté Artwear" class="real-img" />
+          <img src="/site-coteartwear.webp" alt="Aperçu du site e-commerce Côté Artwear, marque de vêtements" class="real-img" loading="lazy" decoding="async" />
           <div class="real-overlay"><strong>Côté Artwear</strong><span>E-commerce · Marque de vêtement</span></div>
         </div>
         <div class="real-label"><strong>Côté Artwear</strong><span>E-commerce · Marque de vêtement</span></div>
       </a>
 
-      <a class="real-card fade-up" href="https://entente-de-la-tet.fr/" target="_blank" rel="noopener">
+      <a class="real-card fade-up" href="https://entente-de-la-tet.fr/" target="_blank" rel="noopener noreferrer">
         <div class="real-img-wrap">
-          <img src="/site entente de la têt.webp" alt="Entente de la Têt" class="real-img" />
+          <img src="/site-entente-de-la-tet.webp" alt="Aperçu du site vitrine du club de rugby Entente de la Têt" class="real-img" loading="lazy" decoding="async" />
           <div class="real-overlay"><strong>Entente de la Têt</strong><span>Site vitrine · Club de rugby</span></div>
         </div>
         <div class="real-label"><strong>Entente de la Têt</strong><span>Site vitrine · Club de rugby</span></div>
@@ -116,8 +116,27 @@
 .real-label { display: none }
 
 @media (max-width: 768px) {
-  .real-track { padding-left: 1rem; gap: 12px }
-  .real-card { flex: 0 0 calc(100vw - 2rem) }
+  /* Mobile : scroll-snap natif */
+  .real-track-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .real-track-wrap::-webkit-scrollbar { display: none }
+  .real-track {
+    transform: none !important;
+    transition: none !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw;
+    gap: 12px;
+  }
+  .real-card {
+    flex: 0 0 calc(100vw - 4rem);
+    scroll-snap-align: start;
+  }
   .real-img-wrap { height: 200px }
   .real-overlay { opacity: 0 !important }
   .real-label {

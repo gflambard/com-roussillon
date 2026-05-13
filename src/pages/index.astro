@@ -6,6 +6,7 @@ import Services from '../components/Services.astro'
 import Pourquoi from '../components/Pourquoi.astro'
 import Realisations from '../components/Realisations.astro'
 import RealisationsAutres from '../components/RealisationsAutres.astro'
+import PhotoVideo from '../components/PhotoVideo.astro'
 import Avis from '../components/Avis.astro'
 import Partenaires from '../components/Partenaires.astro'
 import Contact from '../components/Contact.astro'
@@ -14,29 +15,38 @@ import Footer from '../components/Footer.astro'
 
 <Layout>
   <Nav />
-  <Hero />
-  <Services />
-  <Pourquoi />
-  <Realisations />
-  <RealisationsAutres />
-  <Avis />
-  <Partenaires />
-  <Contact />
+  <main id="main">
+    <Hero />
+    <Services />
+    <Pourquoi />
+    <Realisations />
+    <RealisationsAutres />
+    <PhotoVideo />
+    <Avis />
+    <Partenaires />
+    <Contact />
+  </main>
   <Footer />
 </Layout>
 
 <script>
-// Align carousels with content grid
+const MOBILE_BP = 768
+const isMobile = () => window.innerWidth <= MOBILE_BP
+
+// Align carousels with .sec-inner content edge (desktop only)
 function alignCarousels() {
+  const tracks = document.querySelectorAll<HTMLElement>('.services-track, .real-track, .ar-track')
+  const headers = document.querySelectorAll<HTMLElement>('.services-header, .real-header, .ar-header, .carousel-nav')
+  if (isMobile()) {
+    tracks.forEach(t => { t.style.paddingLeft = '' })
+    headers.forEach(el => { el.style.paddingLeft = '' })
+    return
+  }
   const ref = document.querySelector<HTMLElement>('.sec-inner')
   if (!ref) return
   const leftEdge = ref.getBoundingClientRect().left
-  document.querySelectorAll<HTMLElement>('.services-track, .real-track, .ar-track').forEach(t => {
-    t.style.paddingLeft = leftEdge + 'px'
-  })
-  document.querySelectorAll<HTMLElement>('.services-header, .real-header, .ar-header, .carousel-nav').forEach(el => {
-    el.style.paddingLeft = leftEdge + 'px'
-  })
+  tracks.forEach(t => { t.style.paddingLeft = leftEdge + 'px' })
+  headers.forEach(el => { el.style.paddingLeft = leftEdge + 'px' })
 }
 alignCarousels()
 
@@ -51,7 +61,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.08 })
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el))
 
-// Carousel
+// Carousel hybride : JS desktop, scroll-snap natif mobile
 function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: string) {
   const track = document.getElementById(trackId) as HTMLElement | null
   const prev  = document.getElementById(prevId)
@@ -60,37 +70,38 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
   if (!track || !prev || !next || !dotsEl) return
 
   const t = track as HTMLElement
+  const wrap = t.parentElement!
   const cards = Array.from(t.children) as HTMLElement[]
+  let mode: 'mobile' | 'desktop' | null = null
   let cur = 0
   let positions: number[] = []
+  let mobileObs: IntersectionObserver | null = null
 
-  function getGap() {
-    return parseFloat(getComputedStyle(t).gap) || 16
+  function setActiveDot(i: number) {
+    dotsEl!.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === i))
   }
 
+  // ===== DESKTOP =====
+  function getGap() { return parseFloat(getComputedStyle(t).gap) || 16 }
   function scrollForIndex(i: number) {
     const gap = getGap()
     let off = 0
     for (let j = 0; j < i; j++) off += cards[j].offsetWidth + gap
     return off
   }
-
   function getMaxScroll() {
     const gap = getGap()
-    const wrapWidth = t.parentElement!.offsetWidth
+    const wrapWidth = wrap.offsetWidth
     const padLeft = parseInt(t.style.paddingLeft) || 0
     const total = cards.reduce((sum, c) => sum + c.offsetWidth + gap, 0) - gap
     return Math.max(0, padLeft + total - wrapWidth + 40)
   }
-
   function buildPositions() {
     const ms = getMaxScroll()
     positions = []
     for (let i = 0; i < cards.length; i++) {
       const s = Math.min(scrollForIndex(i), ms)
-      if (positions.length === 0 || s !== positions[positions.length - 1]) {
-        positions.push(s)
-      }
+      if (positions.length === 0 || s !== positions[positions.length - 1]) positions.push(s)
     }
     dotsEl!.innerHTML = ''
     positions.forEach((_, i) => {
@@ -102,33 +113,65 @@ function initCarousel(trackId: string, prevId: string, nextId: string, dotsId: s
     if (cur >= positions.length) cur = Math.max(0, positions.length - 1)
     updateNavBtns()
   }
-
   function updateNavBtns() {
     prev?.classList.toggle('visible', cur > 0)
     next?.classList.toggle('visible', cur < positions.length - 1)
   }
-
   function goTo(i: number) {
     cur = Math.max(0, Math.min(i, positions.length - 1))
     t.style.transform = 'translateX(-' + positions[cur] + 'px)'
-    dotsEl!.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === cur))
+    setActiveDot(cur)
     updateNavBtns()
   }
 
-  buildPositions()
+  // ===== MOBILE (scroll-snap natif) =====
+  function setupMobile() {
+    // Clear desktop transform/padding pour que le CSS reprenne la main
+    t.style.transform = ''
+    t.style.paddingLeft = ''
+    // Dots : 1 par carte
+    dotsEl!.innerHTML = ''
+    cards.forEach((_, i) => {
+      const d = document.createElement('div')
+      d.className = 'dot' + (i === 0 ? ' active' : '')
+      dotsEl!.appendChild(d)
+    })
+    // Observer : marque le dot actif selon la carte la plus visible
+    if (mobileObs) mobileObs.disconnect()
+    mobileObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.55) {
+            const i = cards.indexOf(e.target as HTMLElement)
+            if (i >= 0) setActiveDot(i)
+          }
+        })
+      },
+      { root: wrap, threshold: [0.55] }
+    )
+    cards.forEach((c) => mobileObs!.observe(c))
+  }
 
-  prev.addEventListener('click', () => goTo(cur - 1))
-  next.addEventListener('click', () => goTo(cur + 1))
+  function setup() {
+    const newMode = isMobile() ? 'mobile' : 'desktop'
+    if (newMode === mode) {
+      if (mode === 'desktop') buildPositions()
+      return
+    }
+    mode = newMode
+    if (mode === 'mobile') {
+      setupMobile()
+    } else {
+      if (mobileObs) { mobileObs.disconnect(); mobileObs = null }
+      buildPositions()
+    }
+  }
 
-  // Swipe mobile
-  let touchStartX = 0
-  t.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX }, { passive: true })
-  t.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 50) goTo(diff > 0 ? cur + 1 : cur - 1)
-  }, { passive: true })
+  prev.addEventListener('click', () => { if (mode === 'desktop') goTo(cur - 1) })
+  next.addEventListener('click', () => { if (mode === 'desktop') goTo(cur + 1) })
 
-  return buildPositions
+  setup()
+  return setup
 }
 
 // Initialiser après chargement complet pour que offsetWidth soit correct (images chargées)

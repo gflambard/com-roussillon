@@ -40,20 +40,20 @@
         </div>
 
         <div class="socials">
-          <a href="https://www.instagram.com/com_roussillon/" target="_blank" class="social-btn" aria-label="Instagram">
+          <a href="https://www.instagram.com/com_roussillon/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
               <rect x="1.5" y="1.5" width="12" height="12" rx="3.5" stroke="#888" stroke-width="1.1"/>
               <circle cx="7.5" cy="7.5" r="2.5" stroke="#888" stroke-width="1.1"/>
               <circle cx="11" cy="4" r=".7" fill="#888"/>
             </svg>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61568516977029" target="_blank" class="social-btn" aria-label="Facebook">
+          <a href="https://www.facebook.com/profile.php?id=61568516977029" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
               <rect x="1.5" y="1.5" width="12" height="12" rx="3.5" stroke="#888" stroke-width="1.1"/>
               <path d="M8.5 7.5H7V11H5.5V7.5h-1V6h1V5.2A2 2 0 018.3 3H10v1.5H9a.5.5 0 00-.5.5V6H10L8.5 7.5z" fill="#888"/>
             </svg>
           </a>
-          <a href="https://www.linkedin.com/company/comroussillon/" target="_blank" class="social-btn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/comroussillon/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
               <rect x="1.5" y="1.5" width="12" height="12" rx="3.5" stroke="#888" stroke-width="1.1"/>
               <circle cx="5" cy="5.5" r=".8" fill="#888"/>
@@ -69,24 +69,31 @@
           <input type="hidden" name="access_key" value="f250806b-c41b-4884-8143-816b48efbecf" />
           <input type="hidden" name="subject" value="Nouvelle demande de devis – Com Roussillon" />
           <input type="hidden" name="from_name" value="Com Roussillon" />
-          <input type="checkbox" name="botcheck" style="display:none" />
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
           <div class="form-row">
-            <input type="text" name="nom" placeholder="Prénom &amp; Nom" required />
-            <input type="text" name="entreprise" placeholder="Entreprise (optionnel)" />
+            <label class="visually-hidden" for="ctf-nom">Prénom et nom</label>
+            <input id="ctf-nom" type="text" name="nom" placeholder="Prénom &amp; Nom" autocomplete="name" required />
+            <label class="visually-hidden" for="ctf-entreprise">Entreprise (optionnel)</label>
+            <input id="ctf-entreprise" type="text" name="entreprise" placeholder="Entreprise (optionnel)" autocomplete="organization" />
           </div>
-          <input type="email" name="email" placeholder="Adresse email" required />
-          <input type="tel" name="telephone" placeholder="Téléphone" />
-          <select name="service" required>
+          <label class="visually-hidden" for="ctf-email">Adresse email</label>
+          <input id="ctf-email" type="email" name="email" placeholder="Adresse email" autocomplete="email" required />
+          <label class="visually-hidden" for="ctf-tel">Téléphone</label>
+          <input id="ctf-tel" type="tel" name="telephone" placeholder="Téléphone" autocomplete="tel" />
+          <label class="visually-hidden" for="ctf-service">Service souhaité</label>
+          <select id="ctf-service" name="service" required>
             <option value="" disabled selected>Quel service vous intéresse ?</option>
             <option>Site web sur mesure</option>
             <option>Identité visuelle / logo</option>
             <option>Réseaux sociaux</option>
             <option>Supports d'impression</option>
             <option>Vêtements personnalisés</option>
+            <option>Photo, vidéo &amp; drone</option>
             <option>Audit &amp; conseils</option>
             <option>Autre / je ne sais pas encore</option>
           </select>
-          <textarea name="message" placeholder="Décrivez votre projet en quelques mots..." required></textarea>
+          <label class="visually-hidden" for="ctf-message">Décrivez votre projet</label>
+          <textarea id="ctf-message" name="message" placeholder="Décrivez votre projet en quelques mots..." required></textarea>
           <button type="submit" id="submitBtn">Envoyer ma demande &nbsp;→</button>
           <p class="form-success" id="formSuccess">Merci ! On revient vers vous sous 24h. 👋</p>
           <p class="form-error" id="formError">Une erreur est survenue. Réessayez ou contactez-nous directement.</p>

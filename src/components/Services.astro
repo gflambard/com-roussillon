@@ -24,7 +24,7 @@
           <p class="svc-desc">Vitrine, e-commerce ou portfolio — conçu pour capter vos clients à Perpignan et en Roussillon.</p>
         </div>
         <div class="svc-img">
-          <img src="/site web mokcup.png" alt="Mockup site web" />
+          <img src="/site-web-mockup.webp" alt="Création de site web sur mesure par Com Roussillon" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -36,7 +36,7 @@
           <p class="svc-desc">Une identité forte qui vous distingue et reste mémorable — du logo à tous vos supports.</p>
         </div>
         <div class="svc-img">
-          <img src="/identite visuelle.png" alt="Identité visuelle" />
+          <img src="/identite-visuelle.webp" alt="Création d'identité visuelle et de logo pour entreprise" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -48,7 +48,7 @@
           <p class="svc-desc">Une présence active sur Instagram, Facebook et LinkedIn — contenu sur mesure, aligné à votre image.</p>
         </div>
         <div class="svc-img">
-          <img src="/mockup reseaux sociaux.png" alt="Mockup réseaux sociaux" />
+          <img src="/mockup-reseaux-sociaux.webp" alt="Gestion de réseaux sociaux Instagram et Facebook" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -60,7 +60,7 @@
           <p class="svc-desc">Impression haute qualité tous formats — cartes de visite, dépliants, livrets, calendriers.</p>
         </div>
         <div class="svc-img">
-          <img src="/carte de visite.png" alt="Carte de visite" />
+          <img src="/carte-de-visite.webp" alt="Carte de visite et supports imprimés personnalisés" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -72,7 +72,7 @@
           <p class="svc-desc">T-shirts, polos, sweats à votre image — pour vos équipes, clubs sportifs ou événements.</p>
         </div>
         <div class="svc-img">
-          <img src="/vêtement personnalise.png" alt="Vêtements personnalisés" />
+          <img src="/vetement-personnalise.webp" alt="T-shirt et vêtement personnalisé pour entreprise et club sportif" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -84,7 +84,7 @@
           <p class="svc-desc">Un regard extérieur pour identifier ce qui bloque dans votre communication — et comment y remédier.</p>
         </div>
         <div class="svc-img">
-          <img src="/audit-et-conseils.png" alt="Audit et conseils" />
+          <img src="/audit-et-conseils.webp" alt="Audit et conseils en stratégie de communication" loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -172,4 +172,31 @@
   transition: transform .4s ease;
 }
 .svc-card:hover .svc-img img { transform: scale(1.04) }
+
+/* Mobile : scroll-snap natif (comme PhotoVideo) */
+@media (max-width: 768px) {
+  .services-track-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .services-track-wrap::-webkit-scrollbar { display: none }
+  .services-track {
+    transform: none !important;
+    transition: none !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw;
+    gap: 12px;
+  }
+  .svc-card {
+    flex: 0 0 calc(100vw - 4rem);
+    height: 480px;
+    scroll-snap-align: start;
+  }
+  .svc-card:hover { transform: none }
+  .svc-img { height: 280px }
+}
 </style>

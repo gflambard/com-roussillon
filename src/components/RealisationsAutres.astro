@@ -1,32 +1,32 @@
 ---
 const cards = [
   {
-    img: "/instagram-entente-de-la-têt.webp",
-    alt: "Instagram Entente de la Têt",
+    img: "/instagram-entente-de-la-tet.webp",
+    alt: "Gestion du compte Instagram de l'Entente de la Têt par Com Roussillon",
     label: "Entente de la Têt",
     tag: "Réseaux sociaux",
   },
   {
-    img: "/mockup-bouteille-XV-catalan.webp",
-    alt: "Mockup bouteille XV Catalan",
+    img: "/mockup-bouteille-xv-catalan.webp",
+    alt: "Design d'étiquette de bouteille pour le XV Catalan",
     label: "XV Catalan",
     tag: "Design produit",
   },
   {
     img: "/impression-textile-spar.webp",
-    alt: "Impression textile Spar",
+    alt: "Impression textile et vêtements personnalisés pour Spar",
     label: "Spar",
     tag: "Textile personnalisé",
   },
   {
     img: "/impression-brochure.webp",
-    alt: "Impression brochure",
+    alt: "Conception et impression de brochure professionnelle",
     label: "Impression",
     tag: "Supports print",
   },
   {
-    img: "/Logo-Garage-ACTIPOLE-2.webp",
-    alt: "Logo Garage Actipole",
+    img: "/logo-garage-actipole.webp",
+    alt: "Logo du Garage Actipole créé par Com Roussillon",
     label: "Garage Actipole",
     tag: "Création de logo",
   },
@@ -52,7 +52,7 @@ const cards = [
       {cards.map(c => (
         <div class="ar-card fade-up">
           <div class="ar-img-wrap">
-            <img src={c.img} alt={c.alt} class="ar-img" />
+            <img src={c.img} alt={c.alt} class="ar-img" loading="lazy" decoding="async" />
             <div class="ar-overlay">
               <strong>{c.label}</strong>
               <span>{c.tag}</span>
@@ -128,8 +128,27 @@ const cards = [
 .ar-overlay span { color: rgba(255,255,255,.6); font-size: 11px }
 
 @media (max-width: 768px) {
-  .ar-track { padding-left: 1rem; gap: 12px }
-  .ar-card { flex: 0 0 80vw }
+  /* Mobile : scroll-snap natif */
+  .ar-track-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ar-track-wrap::-webkit-scrollbar { display: none }
+  .ar-track {
+    transform: none !important;
+    transition: none !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw;
+    gap: 12px;
+  }
+  .ar-card {
+    flex: 0 0 80vw;
+    scroll-snap-align: start;
+  }
   .ar-img-wrap { width: 100%; height: 80vw }
   .ar-nav-btn { display: none }
   .ar-overlay { opacity: 0.82 }

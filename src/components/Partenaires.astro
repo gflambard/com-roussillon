@@ -1,17 +1,17 @@
 ---
 const logos = [
-  { src: "/logo entente-de-la-têt.webp", alt: "Entente de la Têt" },
-  { src: "/Logo-Garage-ACTIPOLE-2.webp", alt: "Garage Actipole" },
-  { src: "/logo XV catalan.webp", alt: "XV Catalan" },
-  { src: "/LOGO_SARL-LMC-nou.webp", alt: "SARL LMC" },
-  { src: "/logo spar.webp", alt: "Spar" },
-  { src: "/logo-PEZIN-TOUCH.webp", alt: "Pezin Touch" },
-  { src: "/logo-maillotfrancais.png", alt: "Maillot Français" },
-  { src: "/logo-cotri-diagnostic.png", alt: "Cotri Diagnostic" },
-  { src: "/logo_Cote_Atwear.png", alt: "Côté Artwear" },
-  { src: "/logo-cote-francais.png", alt: "Côté Français" },
-  { src: "/logo-lcs-groupe.png", alt: "LCS Groupe" },
-  { src: "/logo-green-mini-golf.jpg", alt: "Green Mini Golf" },
+  { src: "/logo-entente-de-la-tet.webp", alt: "Logo Entente de la Têt" },
+  { src: "/logo-garage-actipole.webp", alt: "Logo Garage Actipole" },
+  { src: "/logo-xv-catalan.webp", alt: "Logo XV Catalan" },
+  { src: "/logo-sarl-lmc.webp", alt: "Logo SARL LMC" },
+  { src: "/logo-spar.webp", alt: "Logo Spar" },
+  { src: "/logo-pezin-touch.webp", alt: "Logo Pezin Touch" },
+  { src: "/logo-maillotfrancais.webp", alt: "Logo Maillot Français" },
+  { src: "/logo-cotri-diagnostic.webp", alt: "Logo Cotri Diagnostic" },
+  { src: "/logo-cote-artwear.webp", alt: "Logo Côté Artwear" },
+  { src: "/logo-cote-francais.webp", alt: "Logo Côté Français" },
+  { src: "/logo-lcs-groupe.webp", alt: "Logo LCS Groupe" },
+  { src: "/logo-green-mini-golf.webp", alt: "Logo Green Mini Golf" },
 ]
 ---
 
@@ -26,7 +26,7 @@ const logos = [
       <!-- Dupliqué 3x pour un loop sans couture -->
       {[...logos, ...logos, ...logos].map(l => (
         <div class="ticker-item">
-          <img src={l.src} alt={l.alt} draggable="false" />
+          <img src={l.src} alt={l.alt} draggable="false" loading="lazy" decoding="async" />
         </div>
       ))}
     </div>

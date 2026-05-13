@@ -1,0 +1,247 @@
+---
+const cards = [
+  {
+    img: '/mas-vue-drone.webp',
+    tag: 'Vos lieux',
+    sub: 'Boutique, atelier, vitrine',
+    alt: 'Vue aérienne par drone d\'un mas du Roussillon au coucher du soleil',
+  },
+  {
+    img: '/bouteille-de-vin-vignes.webp',
+    tag: 'Vos produits',
+    sub: 'Packshot, mise en scène, détails',
+    alt: 'Bouteille de vin photographiée dans les vignes du Roussillon',
+  },
+  {
+    img: '/chef-dressage-culinaire.webp',
+    tag: 'Votre terroir',
+    sub: 'Producteurs, métiers, savoir-faire',
+    alt: 'Chef cuisinier en plein dressage culinaire',
+  },
+]
+---
+
+<section id="photo-video" class="sec" aria-labelledby="pv-title">
+  <div class="sec-inner">
+    <div class="pv-header fade-up">
+      <span class="pv-eyebrow">Nouveau service</span>
+      <h2 id="pv-title" class="sec-title">Photo, vidéo<br>et <em>drone.</em></h2>
+      <p class="sec-intro">Vos lieux, vos produits, votre terroir — captés avec un œil pro, en photo, vidéo et drone. Une production locale, à Perpignan et dans tout le Roussillon.</p>
+    </div>
+
+    <div class="pv-grid" id="pvGrid">
+      {cards.map((c) => (
+        <article class="pv-card fade-up">
+          <div class="pv-thumb">
+            <img src={c.img} alt={c.alt} loading="lazy" decoding="async" />
+            <span class="pv-tag">{c.tag}</span>
+          </div>
+          <strong class="pv-title-card">{c.sub}</strong>
+        </article>
+      ))}
+    </div>
+
+    <div class="pv-dots" id="pvDots" aria-hidden="true"></div>
+
+    <div class="pv-cta fade-up">
+      <a href="#contact" class="btn-dark">Demander un devis</a>
+      <span class="pv-meta">Devis gratuit · Réponse sous 24h</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  #photo-video {
+    background: #fff;
+  }
+
+  .pv-header {
+    text-align: left;
+    max-width: 720px;
+    margin: 0 0 3rem;
+  }
+
+  .pv-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    padding: .35rem .9rem;
+    border: 0.5px solid rgba(184, 147, 62, 0.4);
+    border-radius: 980px;
+    background: rgba(184, 147, 62, 0.08);
+  }
+
+  #photo-video .sec-title {
+    margin-bottom: 1rem;
+  }
+  #photo-video .sec-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  #photo-video .sec-intro {
+    margin-bottom: 0;
+    color: var(--mid);
+    max-width: 600px;
+  }
+
+  /* Grille desktop */
+  .pv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .pv-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .pv-thumb {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-off);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .pv-card:hover .pv-thumb {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .pv-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+  }
+  .pv-card:hover .pv-thumb img {
+    transform: scale(1.05);
+  }
+
+  .pv-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: .4rem .8rem;
+    border-radius: 20px;
+  }
+
+  .pv-title-card {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: -.01em;
+    margin-top: 1rem;
+    padding: 0 .2rem;
+  }
+
+  /* Dots mobile — cachés desktop */
+  .pv-dots {
+    display: none;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 2rem;
+  }
+  .pv-dots .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #c7c7cc;
+    transition: background .2s, width .2s;
+  }
+  .pv-dots .dot.active { background: var(--dark); width: 18px; border-radius: 3px }
+
+  /* CTA aligné à gauche */
+  .pv-cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .pv-meta {
+    font-size: 12px;
+    color: var(--light);
+    font-weight: 300;
+    letter-spacing: -.01em;
+  }
+
+  /* Carrousel mobile : scroll horizontal + snap */
+  @media (max-width: 900px) {
+    .pv-grid {
+      display: flex;
+      grid-template-columns: none;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* Pleine largeur edge-to-edge en cassant le padding de .sec */
+      margin-left: -5vw;
+      margin-right: -5vw;
+      padding: .5rem 5vw 1rem;
+      scroll-padding-left: 5vw;
+      margin-bottom: 1rem;
+    }
+    .pv-grid::-webkit-scrollbar { display: none }
+
+    .pv-card {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+    }
+    .pv-thumb {
+      aspect-ratio: 3 / 4;
+    }
+
+    .pv-dots { display: flex }
+
+    .pv-cta { justify-content: flex-start }
+  }
+</style>
+
+<script>
+  // Dots indicateurs pour le carrousel mobile (CSS scroll-snap)
+  const grid = document.getElementById('pvGrid')
+  const dotsEl = document.getElementById('pvDots')
+  if (grid && dotsEl) {
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.pv-card'))
+
+    cards.forEach((_, i) => {
+      const d = document.createElement('div')
+      d.className = 'dot' + (i === 0 ? ' active' : '')
+      dotsEl.appendChild(d)
+    })
+
+    const dots = Array.from(dotsEl.querySelectorAll<HTMLElement>('.dot'))
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.6) {
+            const i = cards.indexOf(e.target as HTMLElement)
+            dots.forEach((d, j) => d.classList.toggle('active', j === i))
+          }
+        })
+      },
+      { root: grid, threshold: [0.6] }
+    )
+    cards.forEach((c) => obs.observe(c))
+  }
+</script>
