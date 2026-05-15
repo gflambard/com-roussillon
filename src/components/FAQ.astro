@@ -1,0 +1,183 @@
+---
+const faqs = [
+  {
+    q: "Pourquoi faire appel à une agence de communication à Perpignan ?",
+    a: "Faire appel à une agence de communication à Perpignan, c'est confier votre image à des professionnels qui connaissent le tissu économique local des Pyrénées-Orientales. Com Roussillon vous accompagne sur l'ensemble de votre communication : création de site internet, conception de logo et d'identité visuelle, gestion des réseaux sociaux (Instagram, Facebook, LinkedIn), supports d'impression, vêtements personnalisés, photo, vidéo et drone. Une approche globale et cohérente, pensée pour les artisans, commerçants, PME et clubs sportifs du 66.",
+  },
+  {
+    q: "Quels sont les tarifs pour la création d'un site internet ou d'un logo à Perpignan ?",
+    a: "Les tarifs varient selon votre projet : type de site (vitrine, e-commerce, sur mesure), complexité du logo et de la charte graphique, services associés (référencement, contenus, photos). Chez Com Roussillon, chaque devis est personnalisé après un premier échange gratuit pour comprendre vos besoins, votre activité et vos objectifs. Nous travaillons avec des budgets adaptés au marché des Pyrénées-Orientales, que vous soyez artisan, commerçant, PME ou association. Contactez-nous pour recevoir une estimation détaillée sous 48h.",
+  },
+  {
+    q: "Comment se déroule un projet de communication avec votre agence ?",
+    a: "Notre méthode tient en quatre étapes claires. D'abord, un premier rendez-vous gratuit pour comprendre votre activité, vos enjeux et vos objectifs. Ensuite, une proposition détaillée avec stratégie sur mesure et devis transparent. Puis la création, par étapes, avec des validations à chaque jalon — vous gardez la main sur chaque décision. Enfin, la livraison du projet et un accompagnement post-projet pour ajuster si besoin. Que ce soit pour un site web, une identité visuelle, des supports imprimés ou un outil métier, vous êtes accompagné de bout en bout.",
+  },
+  {
+    q: "Combien de temps faut-il pour créer un site internet ou refaire une identité visuelle ?",
+    a: "Chaque projet est sur mesure, donc le délai dépend de ce que vous voulez réaliser : complexité du design, nombre de pages, fonctionnalités, contenus à produire. On fonctionne vite et structuré — planning clair dès la signature du devis, jalons réguliers pour valider à chaque étape, et un délai qu'on tient. Plus votre brief est précis et plus vos retours sont fluides, plus on avance vite.",
+  },
+  {
+    q: "Mon site internet sera-t-il bien référencé sur Google ?",
+    a: "Oui, tous nos sites sont conçus avec une optimisation SEO native : structure technique propre, balises et données structurées, vitesse de chargement rapide, design mobile-first, hiérarchie sémantique soignée. Nous travaillons aussi votre référencement local — fiche Google Business Profile, mots-clés géographiques (Perpignan, Pyrénées-Orientales, 66) et contenus pensés pour les recherches de vos futurs clients dans la région. L'objectif : que votre activité ressorte quand on cherche un professionnel comme vous à Perpignan et dans les P.-O.",
+  },
+  {
+    q: "Proposez-vous de la photo, vidéo et prise de vue par drone à Perpignan ?",
+    a: "Oui, notre service de captation couvre la photo professionnelle, la vidéo et les prises de vue par drone, partout dans les Pyrénées-Orientales. Idéal pour valoriser vos lieux (mas, domaine viticole, boutique, restaurant), vos produits (packshot, mise en scène), votre terroir ou vos savoir-faire artisanaux. Production locale, professionnelle, livrée prête à l'emploi pour votre site web, vos réseaux sociaux ou vos supports imprimés.",
+  },
+  {
+    q: "Faites-vous du développement informatique et des applications sur mesure ?",
+    a: "Oui, c'est notre nouvelle branche dev. Au-delà de la communication classique, nous développons des sites web sur mesure (vitrine premium, e-commerce, configurateur 3D, espace client), des outils internes (tableaux de bord, plannings d'équipe, automatisations, intégration d'IA pour le tri, la recherche ou la rédaction assistée) et des applications métier complètes (suivi de chantier, gestion de stock, CRM sur mesure, prise de rendez-vous, catalogue digital). Une vraie alternative aux solutions standards quand votre activité a ses propres règles.",
+  },
+  {
+    q: "Travaillez-vous avec des clients en dehors de Perpignan ?",
+    a: "Nous sommes basés à Perpignan et travaillons principalement avec des entreprises des Pyrénées-Orientales : Argelès-sur-Mer, Canet-en-Roussillon, Saint-Cyprien, Céret, Prades, Thuir, Ille-sur-Têt, Cabestany, et plus largement le département 66. Nous acceptons aussi des projets en distanciel partout en France, à condition que la collaboration reste fluide et que le projet colle à notre méthode.",
+  },
+]
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+}
+---
+
+<section id="faq" class="sec" aria-labelledby="faq-title">
+  <div class="sec-inner">
+    <div class="faq-header fade-up">
+      <span class="sec-label">Questions fréquentes</span>
+      <h2 id="faq-title" class="sec-title">Vos questions,<br><em>nos réponses</em>.</h2>
+      <p class="sec-intro">Vous hésitez sur les tarifs, les délais, la méthode, ou ce qu'on peut faire pour votre activité à Perpignan et dans les Pyrénées-Orientales ? Voici ce qu'on nous demande le plus souvent.</p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map(f => (
+        <details class="faq-item fade-up">
+          <summary class="faq-question">
+            <h3>{f.q}</h3>
+            <span class="faq-toggle" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            <p>{f.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <p class="faq-cta fade-up">
+      Une autre question ? <a href="#contact">Contactez-nous directement</a> — réponse sous 48h.
+    </p>
+  </div>
+</section>
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+<style>
+  #faq {
+    background: #fff;
+    padding-top: 4rem;
+  }
+
+  .faq-header { max-width: 720px; margin: 0 0 3rem }
+  #faq .sec-title { margin-bottom: 1rem }
+  #faq .sec-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+  #faq .sec-intro { color: var(--mid); max-width: 640px; margin-bottom: 0 }
+
+  .faq-list {
+    border-top: 0.5px solid var(--border);
+  }
+
+  .faq-item {
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.6rem 0;
+    cursor: pointer;
+    list-style: none;
+    transition: color .2s ease;
+  }
+  .faq-question::-webkit-details-marker { display: none }
+  .faq-question::marker { display: none }
+  .faq-question:hover h3 { color: var(--gold) }
+
+  .faq-question h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: -.02em;
+    line-height: 1.4;
+    margin: 0;
+    transition: color .2s ease;
+  }
+
+  .faq-toggle {
+    width: 36px; height: 36px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: rgba(184, 147, 62, 0.10);
+    color: var(--gold);
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1), background .2s ease;
+  }
+  .faq-toggle svg { width: 16px; height: 16px }
+  .faq-item[open] .faq-toggle {
+    transform: rotate(45deg);
+    background: rgba(184, 147, 62, 0.22);
+  }
+
+  .faq-answer {
+    padding: 0 0 1.6rem;
+    max-width: 780px;
+  }
+  .faq-answer p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.7;
+    letter-spacing: -.01em;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 14px;
+    color: var(--mid);
+    font-weight: 400;
+  }
+  .faq-cta a {
+    color: var(--dark);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(184, 147, 62, 0.5);
+    transition: text-decoration-color .2s ease;
+  }
+  .faq-cta a:hover { text-decoration-color: var(--gold) }
+
+  @media (max-width: 768px) {
+    .faq-question { padding: 1.3rem 0; gap: .8rem }
+    .faq-question h3 { font-size: 15px }
+    .faq-toggle { width: 30px; height: 30px }
+    .faq-toggle svg { width: 14px; height: 14px }
+    .faq-answer { padding-bottom: 1.3rem }
+    .faq-answer p { font-size: 14px; line-height: 1.65 }
+  }
+</style>

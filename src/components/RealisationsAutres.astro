@@ -1,34 +1,34 @@
 ---
 const cards = [
   {
-    img: "/instagram-entente-de-la-tet.webp",
+    img: '/instagram-entente-de-la-tet.webp',
     alt: "Gestion du compte Instagram de l'Entente de la Têt par Com Roussillon",
-    label: "Entente de la Têt",
-    tag: "Réseaux sociaux",
+    label: 'Entente de la Têt',
+    tag: 'Réseaux sociaux',
   },
   {
-    img: "/mockup-bouteille-xv-catalan.webp",
+    img: '/mockup-bouteille-xv-catalan.webp',
     alt: "Design d'étiquette de bouteille pour le XV Catalan",
-    label: "XV Catalan",
-    tag: "Design produit",
+    label: 'XV Catalan',
+    tag: 'Design produit',
   },
   {
-    img: "/impression-textile-spar.webp",
-    alt: "Impression textile et vêtements personnalisés pour Spar",
-    label: "Spar",
-    tag: "Textile personnalisé",
+    img: '/impression-textile-spar.webp',
+    alt: 'Impression textile et vêtements personnalisés pour Spar',
+    label: 'Spar',
+    tag: 'Textile personnalisé',
   },
   {
-    img: "/impression-brochure.webp",
-    alt: "Conception et impression de brochure professionnelle",
-    label: "Impression",
-    tag: "Supports print",
+    img: '/impression-brochure.webp',
+    alt: 'Conception et impression de brochure professionnelle',
+    label: 'Impression',
+    tag: 'Supports print',
   },
   {
-    img: "/logo-garage-actipole.webp",
-    alt: "Logo du Garage Actipole créé par Com Roussillon",
-    label: "Garage Actipole",
-    tag: "Création de logo",
+    img: '/logo-garage-actipole.webp',
+    alt: 'Logo du Garage Actipole créé par Com Roussillon',
+    label: 'Garage Actipole',
+    tag: 'Création de logo',
   },
 ]
 ---
@@ -40,15 +40,15 @@ const cards = [
     <p class="sec-intro">Un aperçu de nos créations au-delà du web — pour une communication complète et cohérente.</p>
   </div>
 
-  <div class="ar-track-wrap">
-    <button class="ar-nav-btn ar-nav-prev" id="arPrev" aria-label="Précédent">
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="carousel-wrap">
+    <button class="carousel-nav-btn prev" data-carousel-prev="ar" aria-label="Précédent">
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <button class="ar-nav-btn ar-nav-next" id="arNext" aria-label="Suivant">
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <button class="carousel-nav-btn next" data-carousel-next="ar" aria-label="Suivant">
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
 
-    <div class="ar-track" id="arTrack">
+    <div class="carousel-scroller ar-track" data-carousel="ar">
       {cards.map(c => (
         <div class="ar-card fade-up">
           <div class="ar-img-wrap">
@@ -63,94 +63,46 @@ const cards = [
     </div>
   </div>
 
-  <div class="ar-dots-wrap">
-    <div class="carousel-dots" id="arDots"></div>
+  <div class="carousel-dots-wrap ar-dots-wrap">
+    <div class="carousel-dots" data-carousel-dots="ar"></div>
   </div>
 </section>
 
 <style>
-#autres-realisations { background: var(--bg-off); padding: 3rem 0 7rem }
+  #autres-realisations { background: var(--bg-off); padding: 3rem 0 7rem }
+  .ar-header { padding: 0 max(5vw, calc((100vw - 1200px) / 2)) 2.5rem }
+  .ar-header .sec-label { color: var(--gold) }
+  .ar-dots-wrap { padding-top: 1.5rem }
 
-.ar-header { padding: 0 5vw 2.5rem }
-.ar-header .sec-label { color: var(--gold) }
-
-.ar-track-wrap { overflow-x: clip; overflow-y: visible; position: relative }
-
-.ar-nav-btn {
-  position: absolute; top: 50%; transform: translateY(-60%);
-  z-index: 10; width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,255,255,0.92); border: 0.5px solid rgba(0,0,0,0.1);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: var(--dark); transition: opacity .2s, transform .2s, background .2s;
-  opacity: 0; pointer-events: none;
-}
-.ar-nav-btn.visible { opacity: 1; pointer-events: auto }
-.ar-nav-btn:hover { background: #fff; transform: translateY(-60%) scale(1.08) }
-.ar-nav-prev { left: 16px }
-.ar-nav-next { right: 16px }
-
-.ar-dots-wrap { padding: 1.5rem 0 0; display: flex; justify-content: center }
-
-.ar-track {
-  display: flex; gap: 16px; padding: 0 0 24px;
-  padding-left: min(5vw, calc((100vw - 1200px) / 2 + 5vw));
-  user-select: none;
-  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
-}
-
-.ar-card { flex: 0 0 300px }
-
-.ar-img-wrap {
-  width: 300px; height: 300px;
-  border-radius: var(--radius);
-  overflow: hidden; position: relative;
-  background: #fff;
-}
-
-.ar-img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: block;
-  transition: transform .4s ease;
-}
-.ar-card:hover .ar-img { transform: scale(1.05) }
-
-.ar-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 1.2rem 1.4rem;
-  opacity: 0; transition: opacity .3s;
-}
-.ar-card:hover .ar-overlay { opacity: 1 }
-.ar-overlay strong { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: -.02em }
-.ar-overlay span { color: rgba(255,255,255,.6); font-size: 11px }
-
-@media (max-width: 768px) {
-  /* Mobile : scroll-snap natif */
-  .ar-track-wrap {
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
+  .ar-card { flex: 0 0 300px }
+  .ar-img-wrap {
+    width: 300px; height: 300px;
+    border-radius: var(--radius);
+    overflow: hidden; position: relative;
+    background: #fff;
   }
-  .ar-track-wrap::-webkit-scrollbar { display: none }
-  .ar-track {
-    transform: none !important;
-    transition: none !important;
-    padding-left: 5vw !important;
-    padding-right: 5vw;
-    gap: 12px;
+  .ar-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    transition: transform .4s ease;
   }
-  .ar-card {
-    flex: 0 0 80vw;
-    scroll-snap-align: start;
+  .ar-card:hover .ar-img { transform: scale(1.05) }
+
+  .ar-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.2rem 1.4rem;
+    opacity: 0; transition: opacity .3s;
   }
-  .ar-img-wrap { width: 100%; height: 80vw }
-  .ar-nav-btn { display: none }
-  .ar-overlay { opacity: 0.82 }
-}
+  .ar-card:hover .ar-overlay { opacity: 1 }
+  .ar-overlay strong { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: -.02em }
+  .ar-overlay span { color: rgba(255,255,255,.6); font-size: 11px }
+
+  @media (max-width: 768px) {
+    .ar-card { flex: 0 0 80vw }
+    .ar-img-wrap { width: 100%; height: 80vw }
+    .ar-overlay { opacity: 0.82 }
+  }
 </style>

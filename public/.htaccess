@@ -45,3 +45,13 @@
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 </IfModule>
+
+# --- Redirections 301 : anciennes URLs (ancien site) vers nouvelle structure ---
+# Conserve le jus SEO et évite les 404 sur les sitelinks Google obsolètes.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/nous-contacter/?$                       /#contact
+  RedirectMatch 301 ^/site-web/?$                             /#services
+  RedirectMatch 301 ^/audit-conseils/?$                       /#services
+  RedirectMatch 301 ^/reseaux-sociaux/?$                      /#services
+  RedirectMatch 301 ^/reflexions-et-tendances-marketing/?$    /blog
+</IfModule>

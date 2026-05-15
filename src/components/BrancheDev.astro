@@ -1,0 +1,300 @@
+---
+const pillars = [
+  {
+    title: 'Sites & expériences web',
+    tagline: 'Stack moderne. Performances natives.',
+    desc: "Du site vitrine au e-commerce, avec briques interactives intégrées si besoin. Code propre, performances solides, sans CMS bricolé.",
+    icon: 'code',
+    examples: ['Vitrine premium', 'E-commerce', 'Configurateur 3D', 'Espace client', 'Multi-langues'],
+  },
+  {
+    title: 'Outils & automatisations',
+    tagline: 'Vos tâches répétitives, automatisées.',
+    desc: "Dashboards, plannings, formulaires connectés à vos données. Avec l'IA là où elle simplifie : tri, recherche, rédaction assistée.",
+    icon: 'sliders',
+    examples: ['Tableau de bord', 'Planning équipe', 'Recherche dans vos docs', 'Mails pré-rédigés', 'Saisie auto de factures'],
+  },
+  {
+    title: 'Applications métier',
+    tagline: 'Le logiciel pensé pour votre activité.',
+    desc: "Quand votre activité a son propre fonctionnement, ses données, ses flux — on construit l'application qui les suit. Pensée pour durer et évoluer avec vous.",
+    icon: 'app',
+    examples: ['Suivi de chantier', 'Gestion de stock', 'CRM sur mesure', 'Catalogue digital', 'Prise de RDV'],
+  },
+]
+---
+
+<section id="branche-dev" class="sec" aria-labelledby="dev-title">
+  <div class="sec-inner">
+    <div class="dev-header fade-up">
+      <span class="dev-eyebrow">Nouvelle branche</span>
+      <h2 id="dev-title" class="sec-title">De l'idée au <em>produit</em>.<br>Du problème à la <em>solution</em>.</h2>
+
+      <p class="dev-pipeline" aria-hidden="true">
+        <span>Une idée <span class="dev-or">/</span> un problème</span>
+        <span class="dev-arrow">→</span>
+        <span class="dev-pipe-code">notre expertise</span>
+        <span class="dev-arrow">→</span>
+        <span>un produit <span class="dev-or">/</span> une solution.</span>
+      </p>
+
+      <p class="sec-intro">On part d'un besoin concret et on construit l'outil qui va avec. Trois axes d'intervention, du site public à l'application métier.</p>
+    </div>
+
+    <div class="dev-grid" data-dev-grid>
+      {pillars.map(p => (
+        <article class="dev-card fade-up">
+          <div class="dev-icon" aria-hidden="true">
+            {p.icon === 'code' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            )}
+            {p.icon === 'sliders' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6"/>
+                <circle cx="9" cy="6" r="2"/>
+                <line x1="4" y1="12" x2="20" y2="12"/>
+                <circle cx="15" cy="12" r="2"/>
+                <line x1="4" y1="18" x2="20" y2="18"/>
+                <circle cx="9" cy="18" r="2"/>
+              </svg>
+            )}
+            {p.icon === 'app' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2.5"/>
+                <line x1="10" y1="18.5" x2="14" y2="18.5"/>
+                <path d="M9 14V9.5M12 14V7M15 14v-3.5"/>
+              </svg>
+            )}
+          </div>
+          <h3>{p.title}</h3>
+          <p class="dev-card-tagline">{p.tagline}</p>
+          <p class="dev-desc">{p.desc}</p>
+          <ul class="dev-chips" aria-label={`Exemples : ${p.title}`}>
+            {p.examples.map(ex => <li>{ex}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="dev-dots" data-dev-dots aria-hidden="true"></div>
+
+    <div class="dev-cta fade-up">
+      <a href="#contact" class="btn-dark">Discuter d'un projet</a>
+      <span class="dev-meta">Étude gratuite · Réponse sous 48h</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  #branche-dev {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Grille tech très discrète + halo gold */
+  #branche-dev::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(184, 147, 62, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(184, 147, 62, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 20%, #000, transparent 80%);
+            mask-image: radial-gradient(ellipse 70% 50% at 50% 20%, #000, transparent 80%);
+    pointer-events: none;
+  }
+  #branche-dev .sec-inner { position: relative; z-index: 1 }
+
+  .dev-header { max-width: 760px; margin: 0 0 3.5rem }
+
+  .dev-eyebrow {
+    display: inline-block;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    padding: .35rem .9rem;
+    border: 0.5px solid rgba(184, 147, 62, 0.4);
+    border-radius: 980px;
+    background: rgba(184, 147, 62, 0.08);
+  }
+  #branche-dev .sec-title { margin-bottom: 1.4rem }
+  #branche-dev .sec-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+
+  .dev-pipeline {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin: 0 0 1.6rem;
+    padding: .65rem 1.1rem;
+    background: rgba(184, 147, 62, 0.05);
+    border: 0.5px solid rgba(184, 147, 62, 0.18);
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    color: var(--dark);
+  }
+  .dev-pipe-code { color: var(--gold); font-weight: 600 }
+  .dev-arrow { color: var(--gold); font-weight: 600 }
+  .dev-or { color: var(--light); font-weight: 400; margin: 0 .15rem }
+
+  #branche-dev .sec-intro { color: var(--mid); max-width: 600px; margin-bottom: 0 }
+
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin: 3rem 0 0;
+  }
+
+  .dev-card {
+    background: #fff;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.2rem 1.9rem;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .dev-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184, 147, 62, 0.4);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  }
+
+  .dev-icon {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 12px;
+    background: rgba(184, 147, 62, 0.10);
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .dev-icon svg { width: 22px; height: 22px }
+
+  .dev-card h3 {
+    font-size: 21px; font-weight: 600;
+    letter-spacing: -.02em; line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: .5rem;
+  }
+  .dev-card-tagline {
+    font-size: 14px; font-weight: 500;
+    color: var(--gold);
+    letter-spacing: -.01em;
+    margin-bottom: .8rem;
+  }
+  .dev-desc {
+    font-size: 14px; font-weight: 300;
+    color: var(--mid);
+    line-height: 1.65;
+    letter-spacing: -.01em;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+  }
+
+  .dev-chips {
+    list-style: none;
+    display: flex; flex-wrap: wrap;
+    gap: .4rem;
+    padding: 0; margin: 0;
+  }
+  .dev-chips li {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    color: var(--dark);
+    padding: .3rem .7rem;
+    border-radius: 980px;
+    background: var(--bg-off);
+    border: 0.5px solid var(--border);
+  }
+
+  .dev-dots { display: none; justify-content: center; gap: 6px; align-items: center; margin-top: 1.6rem }
+
+  .dev-cta {
+    display: flex; align-items: center;
+    gap: 1.2rem; flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+  .dev-meta {
+    font-size: 12px;
+    color: var(--light);
+    font-weight: 300;
+    letter-spacing: -.01em;
+  }
+
+  /* Tablette : on garde 3 cartes tant que possible */
+  @media (max-width: 980px) and (min-width: 769px) {
+    .dev-grid { gap: .9rem }
+    .dev-card { padding: 1.8rem 1.5rem }
+    .dev-card h3 { font-size: 19px }
+  }
+
+  /* Mobile : carrousel scroll-snap */
+  @media (max-width: 768px) {
+    .dev-pipeline { font-size: 13px; padding: .55rem 1rem; gap: .4rem; border-radius: 18px }
+
+    .dev-grid {
+      display: flex;
+      grid-template-columns: none;
+      overflow-x: auto;
+      overflow-y: hidden;
+      touch-action: pan-x;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      margin: 2.5rem -5vw 0;
+      padding: .5rem 1.5rem 1rem;
+      scroll-padding-left: 1.5rem;
+      gap: 1rem;
+    }
+    .dev-grid::-webkit-scrollbar { display: none }
+
+    .dev-card {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+      padding: 1.8rem 1.6rem;
+    }
+    .dev-card:hover { transform: none }
+    .dev-card h3 { font-size: 20px }
+
+    .dev-dots { display: flex }
+    .dev-cta { margin-top: 2rem }
+  }
+</style>
+
+<script>
+  const grid = document.querySelector<HTMLElement>('[data-dev-grid]')
+  const dotsEl = document.querySelector<HTMLElement>('[data-dev-dots]')
+  if (grid && dotsEl) {
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.dev-card'))
+
+    cards.forEach((_, i) => {
+      const d = document.createElement('span')
+      d.className = 'dot' + (i === 0 ? ' active' : '')
+      dotsEl.appendChild(d)
+    })
+    const dots = Array.from(dotsEl.querySelectorAll<HTMLElement>('.dot'))
+
+    const obs = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting && e.intersectionRatio > 0.6) {
+            const i = cards.indexOf(e.target as HTMLElement)
+            if (i >= 0) dots.forEach((d, j) => d.classList.toggle('active', j === i))
+          }
+        })
+      },
+      { root: grid, threshold: [0.6] }
+    )
+    cards.forEach(c => obs.observe(c))
+  }
+</script>

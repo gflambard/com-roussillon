@@ -108,21 +108,52 @@ body {
 @media (max-width: 768px) {
   .sec { padding: 4rem 5vw }
   .sec-intro { font-size: 15px; margin-bottom: 2rem }
-  .svc-nav-btn, .real-nav-btn, .avis-btn { display: none !important }
+  .avis-btn { display: none !important }
 }
 
-/* CAROUSEL NAV */
-.carousel-nav { margin: .75rem 0 0; padding: 0 5vw; display: flex; align-items: center; gap: 1rem }
-.carousel-btn {
-  width: 44px; height: 44px; border-radius: 50%; border: 0.5px solid #c7c7cc;
-  background: #fff; cursor: pointer; display: flex; align-items: center;
-  justify-content: center; transition: background .2s, border-color .2s;
-  font-size: 14px; color: var(--dark);
+/* CAROUSEL — partagé entre Services, Realisations, RealisationsAutres */
+.carousel-wrap { position: relative }
+
+.carousel-scroller {
+  display: flex; gap: 16px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  padding-inline: max(5vw, calc((100vw - 1200px) / 2));
+  scroll-padding-left: max(5vw, calc((100vw - 1200px) / 2));
+  padding-bottom: 24px;
 }
-.carousel-btn:hover { background: var(--bg-off); border-color: #86868b }
+.carousel-scroller::-webkit-scrollbar { display: none }
+.carousel-scroller > * { scroll-snap-align: start; flex-shrink: 0 }
+
+.carousel-nav-btn {
+  position: absolute; top: 50%; transform: translateY(-60%);
+  z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.92); border: 0.5px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--dark); transition: opacity .2s, transform .2s, background .2s;
+  opacity: 0; pointer-events: none;
+}
+.carousel-nav-btn.visible { opacity: 1; pointer-events: auto }
+.carousel-nav-btn:hover { background: #fff; transform: translateY(-60%) scale(1.08) }
+.carousel-nav-btn.prev { left: 16px }
+.carousel-nav-btn.next { right: 16px }
+
+.carousel-dots-wrap { padding: 1rem 0 0; display: flex; justify-content: center }
 .carousel-dots { display: flex; gap: 6px; align-items: center }
 .dot {
   width: 6px; height: 6px; border-radius: 50%; background: #c7c7cc;
   transition: background .2s, width .2s; cursor: pointer;
+  border: none; padding: 0;
 }
 .dot.active { background: var(--dark); width: 18px; border-radius: 3px }
+
+@media (max-width: 768px) {
+  .carousel-nav-btn { display: none }
+  .carousel-scroller { padding-inline: 1.5rem; scroll-padding-left: 1.5rem; gap: 12px }
+}
